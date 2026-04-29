@@ -1,12 +1,24 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
+
+  
 <head>
+
+  
   <meta charset="UTF-8" />
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  
   <title>MathZiraA | Network & Security Engineer</title>
+  
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet"/>
+  
   <style>
+    
     :root {
+      
       --cyan: #00FFD9;
       --cyan-dim: #00bfa5;
       --bg: #080c10;
