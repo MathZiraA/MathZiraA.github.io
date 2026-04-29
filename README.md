@@ -92,7 +92,7 @@
       font-weight: 900;
       font-size: 1.2rem;
       color: var(--cyan);
-      text-shadow: var(--glow);
+      text-shadow: 0 0 10px rgba(0,255,217,0.9), 0 0 30px rgba(0,255,217,0.5), 0 0 60px rgba(0,255,217,0.3);
       letter-spacing: 3px;
     }
 
@@ -688,21 +688,21 @@
   <nav>
     <div class="nav-logo">MathZiraA</div>
     <ul class="nav-links">
-      <li><a href="#hero">_INÍCIO</a></li>
-      <li><a href="#skills">_SKILLS</a></li>
-      <li><a href="#certs">_CERTS</a></li>
-      <li><a href="#projects">_PROJETOS</a></li>
-      <li><a href="#contact">_CONTATO</a></li>
+      <li><a href="#hero">INÍCIO</a></li>
+      <li><a href="#skills">HABILIDADES</a></li>
+      <li><a href="#certs">CERTIFICAÇÕES</a></li>
+      <li><a href="#projects">PROJETOS</a></li>
+      <li><a href="#contact">CONTATO</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-tag">// NETWORK & SECURITY ENGINEER</div>
-    <h1 class="hero-name">Math<span>ZiraA</span></h1>
+    <div class="hero-tag">// NETWORK & SECURITY ENGINEER · SYSTEMS DEVELOPER</div>
+    <h1 class="hero-name">Matheus <span>Ziravello</span></h1>
     <div class="hero-subtitle" id="typed-subtitle"></div>
     <p class="hero-bio">
-      Estudante de Redes no SENAI | Especialista em Cisco, Firewalls e Multi-Cloud (AWS, Azure, GCP) | Foco em infraestrutura, segurança e automação de TI.
+      Estudante de <strong style="color:var(--cyan); text-shadow: 0 0 10px rgba(0,255,217,0.7)">Redes de Computadores</strong> e <strong style="color:var(--cyan); text-shadow: 0 0 10px rgba(0,255,217,0.7)">Desenvolvimento de Sistemas</strong> no SENAI | Especialista em Cisco, Firewalls e Multi-Cloud (AWS, Azure, GCP) | Foco em infraestrutura, segurança, automação de TI e desenvolvimento de software.
     </p>
     <div class="hero-btns">
       <a href="#projects" class="btn btn-primary">VER PROJETOS</a>
@@ -908,7 +908,7 @@
       <div class="contact-wrap reveal">
         <div class="contact-info">
           <h3>Vamos conversar.</h3>
-          <p>Aberto a oportunidades, colaborações e trocas de conhecimento na área de redes e infraestrutura.</p>
+          <p>Aberto a oportunidades, colaborações e trocas de conhecimento nas áreas de redes, infraestrutura e <strong style="color:var(--cyan)">desenvolvimento de sistemas</strong>.</p>
           <div class="contact-links">
             <a href="https://github.com/MathZiraA" target="_blank" class="contact-link">
               <div class="contact-link-icon">🐙</div>
@@ -920,18 +920,18 @@
             </a>
           </div>
         </div>
-        <form class="contact-form" onsubmit="handleForm(event)">
+        <form class="contact-form" action="https://formspree.io/f/xzdynkpy" method="POST">
           <div class="form-group">
             <label>// NOME</label>
-            <input type="text" placeholder="Seu nome" required />
+            <input type="text" name="nome" placeholder="Seu nome" required />
           </div>
           <div class="form-group">
             <label>// EMAIL</label>
-            <input type="email" placeholder="seu@email.com" required />
+            <input type="email" name="email" placeholder="seu@email.com" required />
           </div>
           <div class="form-group">
             <label>// MENSAGEM</label>
-            <textarea placeholder="Sua mensagem..." required></textarea>
+            <textarea name="mensagem" placeholder="Sua mensagem..." required></textarea>
           </div>
           <button type="submit" class="btn-submit">ENVIAR MENSAGEM →</button>
         </form>
@@ -941,7 +941,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 <span>MathZiraA</span></p>
+    <p>© 2025 <span>Matheus Ziravello</span></p>
     <p>NETWORK & SECURITY ENGINEER</p>
     <p>BUILT WITH <span>♥</span> & LOTS OF <span>COFFEE</span></p>
   </footer>
@@ -1020,6 +1020,7 @@
     const phrases = [
       'Network Engineer',
       'Security Specialist',
+      'Systems Developer',
       'Cloud Architect',
       'IoT Developer'
     ];
