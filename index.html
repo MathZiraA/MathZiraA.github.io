@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MathZiraA | Network & Security Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cyan: #00FFD9;
+      --cyan-dim: #00bfa5;
+      --bg: #080c10;
+      --bg2: #0d1117;
+      --bg3: #111820;
+      --text: #c9d1d9;
+      --text-dim: #8b949e;
+      --border: rgba(0,255,217,0.2);
+      --glow: 0 0 20px rgba(0,255,217,0.3);
+      --glow-strong: 0 0 40px rgba(0,255,217,0.5);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 17px;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* CUSTOM CURSOR */
+    .cursor {
+      width: 12px; height: 12px;
+      background: var(--cyan);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s;
+      box-shadow: var(--glow-strong);
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid var(--cyan);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transition: all 0.12s ease;
+      opacity: 0.6;
+    }
+
+    /* CANVAS BACKGROUND */
+    #bg-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* SCANLINES */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 60px;
+      background: rgba(8,12,16,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Orbitron', monospace;
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: var(--cyan);
+      text-shadow: var(--glow);
+      letter-spacing: 3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--cyan);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* SECTIONS */
+    section {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 120px 40px 80px;
+    }
+
+    .hero-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--cyan);
+      letter-spacing: 6px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s forwards 0.3s;
+    }
+
+    .hero-name {
+      font-family: 'Orbitron', monospace;
+      font-weight: 900;
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      line-height: 1;
+      color: #fff;
+      text-shadow: 0 0 60px rgba(0,255,217,0.4);
+      opacity: 0;
+      animation: fadeUp 0.8s forwards 0.5s;
+      margin-bottom: 10px;
+    }
+
+    .hero-name span { color: var(--cyan); }
+
+    .hero-subtitle {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: var(--text-dim);
+      letter-spacing: 3px;
+      opacity: 0;
+      animation: fadeUp 0.8s forwards 0.7s;
+      margin-bottom: 30px;
+    }
+
+    .hero-bio {
+      max-width: 660px;
+      font-size: 1.05rem;
+      color: var(--text-dim);
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 0.8s forwards 0.9s;
+      margin-bottom: 50px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp 0.8s forwards 1.1s;
+    }
+
+    .btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      padding: 14px 34px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: none;
+    }
+
+    .btn-primary {
+      background: var(--cyan);
+      color: #080c10;
+      font-weight: bold;
+      border: 2px solid var(--cyan);
+    }
+
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--cyan);
+      box-shadow: var(--glow-strong);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cyan);
+      border: 2px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--cyan);
+      box-shadow: var(--glow);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 0.8s forwards 1.5s;
+    }
+
+    .scroll-hint span {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      color: var(--text-dim);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--cyan), transparent);
+      animation: pulse-line 2s infinite;
+    }
+
+    /* SECTION WRAPPER */
+    .section-wrap {
+      padding: 100px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    .section-num {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--cyan);
+      letter-spacing: 3px;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', monospace;
+      font-weight: 700;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: #fff;
+      letter-spacing: 2px;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    /* SKILLS */
+    #skills { background: var(--bg2); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 22px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.3s;
+      cursor: none;
+    }
+
+    .skill-card:hover {
+      border-color: var(--cyan);
+      box-shadow: var(--glow);
+      transform: translateY(-4px);
+    }
+
+    .skill-card img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: white;
+      padding: 4px;
+    }
+
+    .skill-card span {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    /* CERTS */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .cert-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: all 0.3s;
+    }
+
+    .cert-card:hover {
+      border-color: var(--cyan);
+      box-shadow: var(--glow);
+      transform: translateY(-3px);
+    }
+
+    .cert-card img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: white;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+
+    .cert-info h4 {
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .cert-link {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--cyan);
+      text-decoration: none;
+      letter-spacing: 1px;
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 4px;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .cert-link:hover {
+      background: var(--cyan);
+      color: #080c10;
+      border-color: var(--cyan);
+    }
+
+    /* PROJECTS */
+    #projects { background: var(--bg2); }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 28px;
+    }
+
+    .project-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 30px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(to right, transparent, var(--cyan), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-card:hover {
+      border-color: var(--cyan);
+      box-shadow: var(--glow);
+      transform: translateY(-4px);
+    }
+
+    .project-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .project-imgs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .project-imgs img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: white;
+      padding: 4px;
+      border: 1px solid var(--border);
+      transition: border-color 0.3s;
+    }
+
+    .project-card:hover .project-imgs img {
+      border-color: var(--cyan);
+    }
+
+    .project-card h3 {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.95rem;
+      color: var(--cyan);
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .project-card p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--cyan);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 3px;
+      letter-spacing: 1px;
+    }
+
+    /* CONTACT */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .contact-info p {
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transition: color 0.3s;
+    }
+
+    .contact-link:hover { color: var(--cyan); }
+
+    .contact-link-icon {
+      width: 38px; height: 38px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      flex-shrink: 0;
+    }
+
+    .contact-link:hover .contact-link-icon {
+      border-color: var(--cyan);
+      box-shadow: var(--glow);
+    }
+
+    /* FORM */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--cyan);
+      letter-spacing: 3px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      resize: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--cyan);
+      box-shadow: var(--glow);
+    }
+
+    .form-group textarea { min-height: 120px; }
+
+    .btn-submit {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      padding: 14px;
+      border-radius: 6px;
+      background: transparent;
+      color: var(--cyan);
+      border: 1px solid var(--cyan);
+      cursor: none;
+      transition: all 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: var(--cyan);
+      color: #080c10;
+      box-shadow: var(--glow-strong);
+    }
+
+    /* FOOTER */
+    footer {
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid var(--border);
+      padding: 30px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg);
+    }
+
+    footer p {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      letter-spacing: 2px;
+    }
+
+    footer span { color: var(--cyan); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse-line {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* TYPING */
+    .typing::after {
+      content: '|';
+      color: var(--cyan);
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { gap: 18px; }
+      .section-wrap { padding: 70px 24px; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+      footer { flex-direction: column; gap: 10px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">MathZiraA</div>
+    <ul class="nav-links">
+      <li><a href="#hero">_INÍCIO</a></li>
+      <li><a href="#skills">_SKILLS</a></li>
+      <li><a href="#certs">_CERTS</a></li>
+      <li><a href="#projects">_PROJETOS</a></li>
+      <li><a href="#contact">_CONTATO</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-tag">// NETWORK & SECURITY ENGINEER</div>
+    <h1 class="hero-name">Math<span>ZiraA</span></h1>
+    <div class="hero-subtitle" id="typed-subtitle"></div>
+    <p class="hero-bio">
+      Estudante de Redes no SENAI | Especialista em Cisco, Firewalls e Multi-Cloud (AWS, Azure, GCP) | Foco em infraestrutura, segurança e automação de TI.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">VER PROJETOS</a>
+      <a href="https://github.com/MathZiraA" target="_blank" class="btn btn-outline">GITHUB →</a>
+    </div>
+    <div class="scroll-hint">
+      <span>SCROLL</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-wrap">
+      <div class="section-header reveal">
+        <span class="section-num">01</span>
+        <h2 class="section-title">HABILIDADES</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-grid reveal">
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux"><span>Linux</span></div>
+        <div class="skill-card"><img src="https://softwaresprime.com.br/wp-content/uploads/2021/12/microsoft-windows-server-2022-standard.png" alt="Windows Server"><span>Windows Server</span></div>
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" alt="Apache"><span>Apache</span></div>
+        <div class="skill-card"><img src="https://www.itandgeneral.com/wp-content/uploads/2023/11/pfsense-logo-square.png" alt="pfSense"><span>pfSense</span></div>
+        <div class="skill-card"><img src="https://www.citypng.com/public/uploads/preview/cisco-square-blue-logo-icon-png-735811696612218gzoiadfplh.png" alt="Cisco"><span>Cisco</span></div>
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt="Arduino"><span>Arduino</span></div>
+        <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="GCP"><span>Google Cloud</span></div>
+        <div class="skill-card"><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-avatar/avatars/aws.webp" alt="AWS"><span>AWS</span></div>
+        <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/250px-Microsoft_Azure.svg.png" alt="Azure"><span>Azure</span></div>
+        <div class="skill-card"><img src="https://images.icon-icons.com/2699/PNG/512/grafana_logo_icon_171048.png" alt="Grafana"><span>Grafana</span></div>
+        <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Zabbix_logo_square.svg" alt="Zabbix"><span>Zabbix</span></div>
+        <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/1280px-Prometheus_software_logo.svg.png" alt="Prometheus"><span>Prometheus</span></div>
+        <div class="skill-card"><img src="https://cdn.iconscout.com/icon/free/png-256/free-nginx-logo-icon-svg-download-png-3030173.png?f=webp&w=128" alt="Nginx"><span>Nginx</span></div>
+        <div class="skill-card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtwMkhmSp7FqIQKoqYW8epUYDvZAs4uaUrkw&s" alt="Fortinet"><span>Fortinet</span></div>
+        <div class="skill-card"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Vmware_workstation_16_icon.svg/960px-Vmware_workstation_16_icon.svg.png" alt="VMware"><span>VMware</span></div>
+        <div class="skill-card"><img src="https://symbols.getvecta.com/stencil_27/42_dns.092432ba49.jpg" alt="DNS"><span>DNS</span></div>
+        <div class="skill-card"><img src="https://www.entelco.com.br/blog/wp-content/uploads/2015/10/TCP-IP-2.png" alt="TCP/IP"><span>TCP/IP</span></div>
+        <div class="skill-card"><img src="https://img.freepik.com/vetores-premium/estilo-de-icone-de-bloqueio-de-seguranca-do-firewall-de-design-vetorial_822882-131686.jpg" alt="Firewall"><span>Firewall</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTS -->
+  <section id="certs">
+    <div class="section-wrap">
+      <div class="section-header reveal">
+        <span class="section-num">02</span>
+        <h2 class="section-title">CERTIFICAÇÕES</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="certs-grid reveal">
+        <div class="cert-card">
+          <img src="https://images.credly.com/size/680x680/images/70d71df5-f3dc-4380-9b9d-f22513a70417/CCNAITN__1_.png" alt="CCNA ITN">
+          <div class="cert-info">
+            <h4>CCNA: Introduction to Networks</h4>
+            <a class="cert-link" href="https://www.credly.com/badges/f671fccc-1072-460d-8011-81e3b06558a0/public_url" target="_blank">VER CREDENCIAL →</a>
+          </div>
+        </div>
+        <div class="cert-card">
+          <img src="https://images.credly.com/size/680x680/images/f4ccdba9-dd65-4349-baad-8f05df116443/CCNASRWE__1_.png" alt="CCNA SRWE">
+          <div class="cert-info">
+            <h4>CCNA: Switching, Routing & Wireless Essentials</h4>
+            <a class="cert-link" href="https://www.credly.com/badges/b1fb1b70-3c64-4a23-8f4d-d131164500e0/public_url" target="_blank">VER CREDENCIAL →</a>
+          </div>
+        </div>
+        <div class="cert-card">
+          <img src="https://images.credly.com/images/505080ad-3731-4b1d-98df-347655a45750/image.png" alt="Google Cloud">
+          <div class="cert-info">
+            <h4>Cibersegurança em Nuvem — Google Cloud</h4>
+            <a class="cert-link" href="https://image2url.com/r2/default/files/1771959050883-989b9b7a-ddc2-4670-bba7-cb32743804d2.pdf" target="_blank">VER CERTIFICADO →</a>
+          </div>
+        </div>
+        <div class="cert-card">
+          <img src="https://images.credly.com/size/680x680/images/e3541a0c-dd4a-4820-8052-5001006efc85/blob" alt="AWS">
+          <div class="cert-info">
+            <h4>AWS Academy Graduate — Cloud Foundations</h4>
+            <a class="cert-link" href="https://www.credly.com/badges/26d421da-fb3c-4399-abf6-855e0268e809" target="_blank">VER CREDENCIAL →</a>
+          </div>
+        </div>
+        <div class="cert-card">
+          <img src="https://images.credly.com/size/220x220/images/20082fc1-94af-4773-9df0-28856b566748/image.png" alt="Fortinet">
+          <div class="cert-info">
+            <h4>Fortinet Certified Associate Cybersecurity</h4>
+            <a class="cert-link" href="https://www.credly.com/earner/earned/share/cf82be9b-3b3a-4f18-8aba-dea441fa30d8" target="_blank">VER CREDENCIAL →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-wrap">
+      <div class="section-header reveal">
+        <span class="section-num">03</span>
+        <h2 class="section-title">PROJETOS</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid reveal">
+        <div class="project-card">
+          <div class="project-imgs">
+            <img src="https://www.itandgeneral.com/wp-content/uploads/2023/11/pfsense-logo-square.png" alt="pfSense">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtwMkhmSp7FqIQKoqYW8epUYDvZAs4uaUrkw&s" alt="Fortinet">
+            <img src="https://img.freepik.com/vetores-premium/estilo-de-icone-de-bloqueio-de-seguranca-do-firewall-de-design-vetorial_822882-131686.jpg" alt="Firewall">
+          </div>
+          <h3>FIREWALL LAB</h3>
+          <p>Implementação de ambiente de segurança com pfSense e Fortinet, configurando regras de firewall, VPN e segmentação de rede.</p>
+          <div class="project-tags">
+            <span class="tag">pfSense</span>
+            <span class="tag">Fortinet</span>
+            <span class="tag">VPN</span>
+            <span class="tag">VLAN</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-imgs">
+            <img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-avatar/avatars/aws.webp" alt="AWS">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/250px-Microsoft_Azure.svg.png" alt="Azure">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="GCP">
+            <img src="https://images.icon-icons.com/2699/PNG/512/grafana_logo_icon_171048.png" alt="Grafana">
+          </div>
+          <h3>MULTI-CLOUD ARCH</h3>
+          <p>Arquitetura híbrida distribuída entre AWS, Azure e GCP com monitoramento centralizado via Grafana e alertas Prometheus.</p>
+          <div class="project-tags">
+            <span class="tag">AWS</span>
+            <span class="tag">Azure</span>
+            <span class="tag">GCP</span>
+            <span class="tag">Grafana</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-imgs">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt="Arduino">
+            <img src="https://automacaoexpert.com/wp-content/uploads/2022/08/MQTT-300x257.jpg" alt="MQTT">
+          </div>
+          <h3>IOT NETWORK</h3>
+          <p>Rede IoT com protocolo MQTT, sensores Arduino e dashboard de monitoramento em tempo real de dispositivos embarcados.</p>
+          <div class="project-tags">
+            <span class="tag">Arduino</span>
+            <span class="tag">MQTT</span>
+            <span class="tag">IoT</span>
+            <span class="tag">Dashboard</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-imgs">
+            <img src="https://softwaresprime.com.br/wp-content/uploads/2021/12/microsoft-windows-server-2022-standard.png" alt="Windows Server">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Zabbix_logo_square.svg" alt="Zabbix">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Vmware_workstation_16_icon.svg/960px-Vmware_workstation_16_icon.svg.png" alt="VMware">
+          </div>
+          <h3>SERVER INFRASTRUCTURE</h3>
+          <p>Administração de servidores Windows Server e Linux com Active Directory, DNS, DHCP e monitoramento via Zabbix.</p>
+          <div class="project-tags">
+            <span class="tag">Windows Server</span>
+            <span class="tag">Linux</span>
+            <span class="tag">Zabbix</span>
+            <span class="tag">AD</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-imgs">
+            <img src="https://www.citypng.com/public/uploads/preview/cisco-square-blue-logo-icon-png-735811696612218gzoiadfplh.png" alt="Cisco">
+            <img src="https://cisco-packet-tracer.fileion.com/storage/software/logos/2025/06/cisco-packet-tracer.png" alt="Packet Tracer">
+            <img src="https://symbols.getvecta.com/stencil_27/42_dns.092432ba49.jpg" alt="DNS">
+          </div>
+          <h3>CISCO NETWORK LAB</h3>
+          <p>Simulação de redes corporativas no Packet Tracer com protocolos OSPF, BGP, STP e implementação de políticas de QoS.</p>
+          <div class="project-tags">
+            <span class="tag">Cisco</span>
+            <span class="tag">OSPF</span>
+            <span class="tag">BGP</span>
+            <span class="tag">Packet Tracer</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-imgs">
+            <img src="https://cdn.iconscout.com/icon/free/png-256/free-nginx-logo-icon-svg-download-png-3030173.png?f=webp&w=128" alt="Nginx">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" alt="Apache">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+          </div>
+          <h3>WEB SERVER STACK</h3>
+          <p>Stack completa com Nginx como reverse proxy, Apache para backend, SSL/TLS e otimização de performance para produção.</p>
+          <div class="project-tags">
+            <span class="tag">Nginx</span>
+            <span class="tag">Apache</span>
+            <span class="tag">SSL/TLS</span>
+            <span class="tag">Linux</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-wrap">
+      <div class="section-header reveal">
+        <span class="section-num">04</span>
+        <h2 class="section-title">CONTATO</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-wrap reveal">
+        <div class="contact-info">
+          <h3>Vamos conversar.</h3>
+          <p>Aberto a oportunidades, colaborações e trocas de conhecimento na área de redes e infraestrutura.</p>
+          <div class="contact-links">
+            <a href="https://github.com/MathZiraA" target="_blank" class="contact-link">
+              <div class="contact-link-icon">🐙</div>
+              github.com/MathZiraA
+            </a>
+            <a href="https://www.linkedin.com/in/mathziraa" target="_blank" class="contact-link">
+              <div class="contact-link-icon">💼</div>
+              linkedin.com/in/mathziraa
+            </a>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="handleForm(event)">
+          <div class="form-group">
+            <label>// NOME</label>
+            <input type="text" placeholder="Seu nome" required />
+          </div>
+          <div class="form-group">
+            <label>// EMAIL</label>
+            <input type="email" placeholder="seu@email.com" required />
+          </div>
+          <div class="form-group">
+            <label>// MENSAGEM</label>
+            <textarea placeholder="Sua mensagem..." required></textarea>
+          </div>
+          <button type="submit" class="btn-submit">ENVIAR MENSAGEM →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 <span>MathZiraA</span></p>
+    <p>NETWORK & SECURITY ENGINEER</p>
+    <p>BUILT WITH <span>♥</span> & LOTS OF <span>COFFEE</span></p>
+  </footer>
+
+  <script>
+    // CURSOR
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx - 6 + 'px';
+      cursor.style.top = my - 6 + 'px';
+    });
+
+    (function animRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx - 18 + 'px';
+      ring.style.top = ry - 18 + 'px';
+      requestAnimationFrame(animRing);
+    })();
+
+    document.querySelectorAll('a, button, .skill-card, .cert-card, .project-card').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2)'; ring.style.transform = 'scale(1.5)'; });
+      el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; ring.style.transform = 'scale(1)'; });
+    });
+
+    // CANVAS PARTICLES
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [];
+
+    function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+    window.addEventListener('resize', resize);
+    resize();
+
+    for (let i = 0; i < 80; i++) {
+      particles.push({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.4, vy: (Math.random() - 0.5) * 0.4,
+        r: Math.random() * 1.5 + 0.5
+      });
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(0,255,217,0.6)';
+        ctx.fill();
+      });
+      particles.forEach((a, i) => {
+        particles.slice(i + 1).forEach(b => {
+          const d = Math.hypot(a.x - b.x, a.y - b.y);
+          if (d < 130) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = `rgba(0,255,217,${0.12 * (1 - d / 130)})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        });
+      });
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    // TYPING
+    const phrases = [
+      'Network Engineer',
+      'Security Specialist',
+      'Cloud Architect',
+      'IoT Developer'
+    ];
+    let pi = 0, ci = 0, del = false;
+    const el = document.getElementById('typed-subtitle');
+
+    function type() {
+      const phrase = phrases[pi];
+      el.textContent = del ? phrase.slice(0, ci--) : phrase.slice(0, ci++);
+      if (!del && ci === phrase.length + 1) { del = true; setTimeout(type, 1400); return; }
+      if (del && ci < 0) { del = false; ci = 0; pi = (pi + 1) % phrases.length; }
+      setTimeout(type, del ? 50 : 90);
+    }
+    type();
+
+    // SCROLL REVEAL
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => obs.observe(r));
+
+    // FORM
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'ENVIADO ✓';
+      btn.style.background = 'var(--cyan)';
+      btn.style.color = '#080c10';
+      setTimeout(() => { btn.textContent = 'ENVIAR MENSAGEM →'; btn.style.background = ''; btn.style.color = ''; e.target.reset(); }, 3000);
+    }
+  </script>
+</body>
+</html>
