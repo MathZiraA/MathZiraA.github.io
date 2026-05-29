@@ -20,9 +20,7 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--bg);
       color: var(--text);
@@ -32,7 +30,6 @@
       cursor: none;
     }
 
-    /* CUSTOM CURSOR */
     .cursor {
       width: 12px; height: 12px;
       background: var(--cyan);
@@ -54,7 +51,6 @@
       opacity: 0.6;
     }
 
-    /* CANVAS BACKGROUND */
     #bg-canvas {
       position: fixed;
       top: 0; left: 0;
@@ -63,7 +59,6 @@
       opacity: 0.4;
     }
 
-    /* SCANLINES */
     body::before {
       content: '';
       position: fixed;
@@ -73,7 +68,6 @@
       z-index: 1;
     }
 
-    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -124,13 +118,8 @@
     .nav-links a:hover { color: var(--cyan); }
     .nav-links a:hover::after { width: 100%; }
 
-    /* SECTIONS */
-    section {
-      position: relative;
-      z-index: 2;
-    }
+    section { position: relative; z-index: 2; }
 
-    /* HERO */
     #hero {
       min-height: 100vh;
       display: flex;
@@ -256,7 +245,6 @@
       animation: pulse-line 2s infinite;
     }
 
-    /* SECTION WRAPPER */
     .section-wrap {
       padding: 100px 60px;
       max-width: 1200px;
@@ -291,7 +279,6 @@
       background: linear-gradient(to right, var(--border), transparent);
     }
 
-    /* SKILLS */
     #skills { background: var(--bg2); }
 
     .skills-grid {
@@ -349,7 +336,7 @@
       border-radius: 12px;
       padding: 24px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 20px;
       transition: all 0.3s;
     }
@@ -371,13 +358,21 @@
       flex-shrink: 0;
     }
 
+    .cert-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      flex: 1;
+    }
+
     .cert-info h4 {
       font-family: 'Rajdhani', sans-serif;
       font-weight: 600;
       font-size: 0.95rem;
       color: #fff;
-      margin-bottom: 10px;
       line-height: 1.4;
+      min-height: 2.8em;
     }
 
     .cert-link {
@@ -391,6 +386,7 @@
       border-radius: 4px;
       transition: all 0.3s;
       display: inline-block;
+      align-self: flex-start;
     }
 
     .cert-link:hover {
@@ -399,7 +395,6 @@
       border-color: var(--cyan);
     }
 
-    /* PROJECTS */
     #projects { background: var(--bg2); }
 
     .projects-grid {
@@ -435,11 +430,6 @@
       transform: translateY(-4px);
     }
 
-    .project-icon {
-      font-size: 2rem;
-      margin-bottom: 16px;
-    }
-
     .project-imgs {
       display: flex;
       gap: 10px;
@@ -458,9 +448,7 @@
       transition: border-color 0.3s;
     }
 
-    .project-card:hover .project-imgs img {
-      border-color: var(--cyan);
-    }
+    .project-card:hover .project-imgs img { border-color: var(--cyan); }
 
     .project-card h3 {
       font-family: 'Orbitron', monospace;
@@ -493,7 +481,6 @@
       letter-spacing: 1px;
     }
 
-    /* CONTACT */
     .contact-wrap {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -551,7 +538,6 @@
       box-shadow: var(--glow);
     }
 
-    /* FORM */
     .contact-form {
       display: flex;
       flex-direction: column;
@@ -612,7 +598,6 @@
       box-shadow: var(--glow-strong);
     }
 
-    /* FOOTER */
     footer {
       position: relative;
       z-index: 2;
@@ -633,7 +618,6 @@
 
     footer span { color: var(--cyan); }
 
-    /* ANIMATIONS */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to { opacity: 1; transform: translateY(0); }
@@ -655,7 +639,6 @@
       transform: translateY(0);
     }
 
-    /* TYPING */
     .typing::after {
       content: '|';
       color: var(--cyan);
@@ -667,7 +650,6 @@
       50% { opacity: 0; }
     }
 
-    /* RESPONSIVE */
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
       .nav-links { gap: 18px; }
@@ -681,10 +663,8 @@
 
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursor-ring"></div>
-
   <canvas id="bg-canvas"></canvas>
 
-  <!-- NAV -->
   <nav>
     <div class="nav-logo">MathZiraA</div>
     <ul class="nav-links">
@@ -696,7 +676,6 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
   <section id="hero">
     <div class="hero-tag">// NETWORK & SECURITY ENGINEER · SYSTEMS DEVELOPER</div>
     <h1 class="hero-name">Matheus <span>Ziravello</span></h1>
@@ -714,7 +693,6 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills">
     <div class="section-wrap">
       <div class="section-header reveal">
@@ -745,7 +723,6 @@
     </div>
   </section>
 
-  <!-- CERTS -->
   <section id="certs">
     <div class="section-wrap">
       <div class="section-header reveal">
@@ -754,6 +731,7 @@
         <div class="section-line"></div>
       </div>
       <div class="certs-grid reveal">
+
         <div class="cert-card">
           <img src="https://images.credly.com/size/680x680/images/70d71df5-f3dc-4380-9b9d-f22513a70417/CCNAITN__1_.png" alt="CCNA ITN">
           <div class="cert-info">
@@ -761,27 +739,31 @@
             <a class="cert-link" href="https://www.credly.com/badges/f671fccc-1072-460d-8011-81e3b06558a0/public_url" target="_blank">VER CREDENCIAL →</a>
           </div>
         </div>
+
         <div class="cert-card">
           <img src="https://images.credly.com/size/680x680/images/f4ccdba9-dd65-4349-baad-8f05df116443/CCNASRWE__1_.png" alt="CCNA SRWE">
           <div class="cert-info">
-            <h4>CCNA: Switching, Routing & Wireless Essentials</h4>
+            <h4>CCNA: Switching, Routing &amp; Wireless Essentials</h4>
             <a class="cert-link" href="https://www.credly.com/badges/b1fb1b70-3c64-4a23-8f4d-d131164500e0/public_url" target="_blank">VER CREDENCIAL →</a>
           </div>
         </div>
+
         <div class="cert-card">
-          <div class="cert-card">
-  <img src="https://images.credly.com/size/680x680/images/0a6d331e-8abf-4272-a949-33f754569a76/CCNAENSA__1_.png" alt="CCNA ENSA">
-  <div class="cert-info">
-    <h4>CCNA: Enterprise Networking, Security and Automation</h4>
-    <a class="cert-link" href="https://www.credly.com/badges/93584b05-5748-431a-b7ca-2e0aefd1bcbf/public_url" target="_blank">VER CREDENCIAL →</a>
-  </div>
-</div>
+          <img src="https://images.credly.com/size/680x680/images/0a6d331e-8abf-4272-a949-33f754569a76/CCNAENSA__1_.png" alt="CCNA ENSA">
+          <div class="cert-info">
+            <h4>CCNA: Enterprise Networking, Security and Automation</h4>
+            <a class="cert-link" href="https://www.credly.com/badges/93584b05-5748-431a-b7ca-2e0aefd1bcbf/public_url" target="_blank">VER CREDENCIAL →</a>
+          </div>
+        </div>
+
+        <div class="cert-card">
           <img src="https://images.credly.com/images/505080ad-3731-4b1d-98df-347655a45750/image.png" alt="Google Cloud">
           <div class="cert-info">
             <h4>Cibersegurança em Nuvem — Google Cloud</h4>
             <a class="cert-link" href="https://image2url.com/r2/default/files/1771959050883-989b9b7a-ddc2-4670-bba7-cb32743804d2.pdf" target="_blank">VER CERTIFICADO →</a>
           </div>
         </div>
+
         <div class="cert-card">
           <img src="https://images.credly.com/size/680x680/images/e3541a0c-dd4a-4820-8052-5001006efc85/blob" alt="AWS">
           <div class="cert-info">
@@ -789,6 +771,7 @@
             <a class="cert-link" href="https://www.credly.com/badges/26d421da-fb3c-4399-abf6-855e0268e809" target="_blank">VER CREDENCIAL →</a>
           </div>
         </div>
+
         <div class="cert-card">
           <img src="https://images.credly.com/size/220x220/images/20082fc1-94af-4773-9df0-28856b566748/image.png" alt="Fortinet">
           <div class="cert-info">
@@ -796,11 +779,11 @@
             <a class="cert-link" href="https://www.credly.com/earner/earned/share/cf82be9b-3b3a-4f18-8aba-dea441fa30d8" target="_blank">VER CREDENCIAL →</a>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects">
     <div class="section-wrap">
       <div class="section-header reveal">
@@ -904,7 +887,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="section-wrap">
       <div class="section-header reveal">
@@ -946,7 +928,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <p>© 2025 <span>Matheus Ziravello</span></p>
     <p>NETWORK & SECURITY ENGINEER</p>
@@ -954,7 +935,6 @@
   </footer>
 
   <script>
-    // CURSOR
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursor-ring');
     let mx = 0, my = 0, rx = 0, ry = 0;
@@ -978,7 +958,6 @@
       el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; ring.style.transform = 'scale(1)'; });
     });
 
-    // CANVAS PARTICLES
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     let W, H, particles = [];
@@ -1023,14 +1002,7 @@
     }
     drawParticles();
 
-    // TYPING
-    const phrases = [
-      'Network Engineer',
-      'Security Specialist',
-      'Systems Developer',
-      'Cloud Architect',
-      'IoT Developer'
-    ];
+    const phrases = ['Network Engineer','Security Specialist','Systems Developer','Cloud Architect','IoT Developer'];
     let pi = 0, ci = 0, del = false;
     const el = document.getElementById('typed-subtitle');
 
@@ -1043,22 +1015,11 @@
     }
     type();
 
-    // SCROLL REVEAL
     const reveals = document.querySelectorAll('.reveal');
     const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     reveals.forEach(r => obs.observe(r));
-
-    // FORM
-    function handleForm(e) {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      btn.textContent = 'ENVIADO ✓';
-      btn.style.background = 'var(--cyan)';
-      btn.style.color = '#080c10';
-      setTimeout(() => { btn.textContent = 'ENVIAR MENSAGEM →'; btn.style.background = ''; btn.style.color = ''; e.target.reset(); }, 3000);
-    }
   </script>
 </body>
 </html>
