@@ -197,6 +197,8 @@ img{display:block}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
 .tag{font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--txt-mute);border:1px solid var(--line-hi);padding:4px 9px;border-radius:2px;transition:color .3s,border-color .3s}
 .card:hover .tag{color:var(--txt-dim);border-color:var(--ember-deep)}
+.card-link{align-self:flex-start;margin-top:16px;font-family:var(--mono);font-size:10.5px;color:var(--txt-mute);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--line-hi);padding-bottom:2px;transition:color .3s,border-color .3s}
+.card-link:hover{color:var(--ember);border-color:var(--ember)}
 
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
 .ct-h{font-family:var(--display);font-size:clamp(30px,5vw,54px);font-weight:700;letter-spacing:-.035em;line-height:1.02;margin-bottom:20px;text-transform:uppercase}
@@ -251,7 +253,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
 <nav class="nav" id="nav">
   <div class="nav-in">
-    <div class="mark"><span class="dot"></span> mmz@tips:~</div>
+    <div class="mark"><span class="dot"></span> mmz@infra:~</div>
     <div class="nav-links">
       <a href="#sobre">sobre</a>
       <a href="#trajetoria">trajetória</a>
@@ -284,8 +286,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       </div>
       <div class="now">
         <span class="live"></span>
-        <p>Tecnologia da Informação na <b>TIPS Tecnologia</b> — primeiros dias</p>
-        <time datetime="2026-08-13">desde 13.08.2026</time>
+        <p>Estagiário de TI na <b>Compre &amp; Alugue Agora</b> · construindo o <b>FlowGest</b></p>
+        <time datetime="2026-10">desde out/2026</time>
       </div>
     </div>
 
@@ -301,13 +303,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   <section class="sec" id="sobre">
     <div class="sec-head reveal">
       <span class="sec-num">01</span><h2 class="sec-title">Sobre</h2>
-      <span class="sec-note">São Caetano do Sul / SP</span>
+      <span class="sec-note">São Paulo / SP</span>
     </div>
     <div class="about">
       <div class="reveal">
         <p>Estudo <strong>Redes de Computadores</strong> e <strong>Desenvolvimento de Sistemas</strong> no SENAI São Caetano do Sul — duas trilhas que só fazem sentido juntas: quem escreve a aplicação entende melhor onde ela quebra quando conhece o caminho do pacote.</p>
         <p>Na prática isso vira: subir e segmentar rede em <strong>Cisco, pfSense e Fortinet</strong>, administrar servidores <strong>Linux e Windows Server</strong>, distribuir carga entre <strong>AWS, Azure e GCP</strong>, e instrumentar tudo com <strong>Zabbix, Grafana e Prometheus</strong>. Se não dá para medir, não está pronto.</p>
-        <p>Do lado do software, desenvolvo aplicações full-stack e automações que encostam nessa infraestrutura — de CRM em SaaS a assistentes de atendimento com IA. O critério é sempre o mesmo: observável, que se recupere sozinho, e documentado.</p>
+        <p>Do lado do software, criei e mantenho o <strong>FlowGest</strong>, um CRM SaaS em produção feito de ponta a ponta em <strong>React, Node.js, TypeScript e PostgreSQL</strong>, além de automações e assistentes com IA, como o <strong>Jarvis</strong>, meu assistente por voz. O critério é sempre o mesmo: observável, que se recupere sozinho, e documentado.</p>
+        <p>Hoje sou estagiário de TI na <strong>Compre &amp; Alugue Agora</strong> e, em 2027, começo <strong>Engenharia de Software na FIAP</strong>.</p>
         <div class="topo">
           <svg viewBox="0 0 640 150" role="img" aria-label="Topologia animada: cliente, switch, roteador, firewall e nuvem">
             <path class="link-l" d="M60 75 H580"/>
@@ -329,10 +332,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
         </div>
       </div>
       <div class="stats reveal">
-        <div class="stat"><b data-count="6">0</b><em>Certificações</em></div>
-        <div class="stat"><b data-count="3">0</b><em>Clouds · AWS Azure GCP</em></div>
-        <div class="stat"><b data-count="9">0</b><em>Projetos documentados</em></div>
-        <div class="stat"><b data-count="2">0</b><em>Cursos técnicos SENAI</em></div>
+        <div class="stat"><b data-count="10">0</b><em>Certificações</em></div>
+        <div class="stat"><b data-count="4">0</b><em>Clouds · AWS Azure GCP OCI</em></div>
+        <div class="stat"><b data-count="14">0</b><em>Projetos</em></div>
+        <div class="stat"><b data-count="2">0</b><em>Estágios em TI</em></div>
       </div>
     </div>
   </section>
@@ -340,26 +343,44 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   <section class="sec" id="trajetoria">
     <div class="sec-head reveal">
       <span class="sec-num">02</span><h2 class="sec-title">Trajetória</h2>
-      <span class="sec-note">atualizado ago/2026</span>
+      <span class="sec-note">atualizado out/2026</span>
     </div>
     <div class="tl reveal">
       <div class="tl-item live">
-        <div class="tl-when">Ago 2026 — atual</div>
-        <h3>Tecnologia da Informação</h3>
-        <div class="tl-org">TIPS Tecnologia</div>
-        <p>Entrei em 13 de agosto de 2026. Primeiros dias no time, levando para produção o que até aqui rodava em laboratório: suporte à infraestrutura, redes e ambientes de servidores.</p>
+        <div class="tl-when">Out 2026 — atual</div>
+        <h3>Estagiário de TI</h3>
+        <div class="tl-org">Compre &amp; Alugue Agora</div>
+        <p>Suporte técnico aos usuários, abertura, acompanhamento e resolução de chamados, e diagnóstico de problemas em computadores, rede e acessos.</p>
+      </div>
+      <div class="tl-item live">
+        <div class="tl-when">Mai 2026 — atual</div>
+        <h3>Fundador e Desenvolvedor Full Stack</h3>
+        <div class="tl-org">FlowGest</div>
+        <p>CRM SaaS em produção para representantes comerciais autônomos. Construído de ponta a ponta: frontend React, backend Node.js com TypeScript, PostgreSQL, deploy com Docker em VPS, pagamentos via Pix e cartão, HTTPS, monitoramento e backups criptografados.</p>
       </div>
       <div class="tl-item">
-        <div class="tl-when">Em andamento</div>
+        <div class="tl-when">Ago 2026 — Out 2026</div>
+        <h3>Estagiário de TI</h3>
+        <div class="tl-org">TIPS Tecnologia</div>
+        <p>Suporte técnico e atendimento de chamados, manutenção de computadores e apoio na configuração de redes, servidores e regras de firewall com Iptables.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Jan 2025 — Dez 2026</div>
         <h3>Técnico em Redes de Computadores</h3>
-        <div class="tl-org">SENAI São Caetano do Sul</div>
+        <div class="tl-org">SENAI São Caetano do Sul · Cyber e IA</div>
         <p>Infraestrutura, roteamento e switching, segurança de perímetro, virtualização e serviços de rede. Base das três certificações CCNA.</p>
       </div>
       <div class="tl-item">
-        <div class="tl-when">Em andamento</div>
+        <div class="tl-when">Abr 2026 — Dez 2027</div>
         <h3>Técnico em Desenvolvimento de Sistemas</h3>
-        <div class="tl-org">SENAI São Caetano do Sul</div>
-        <p>Desenvolvimento full-stack, banco de dados e integração com nuvem. Origem do TechStock, projeto integrador multi-cloud.</p>
+        <div class="tl-org">SENAI São Caetano do Sul · Cyber e IA</div>
+        <p>Desenvolvimento full-stack, banco de dados e integração com nuvem.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Início em 2027</div>
+        <h3>Bacharelado em Engenharia de Software</h3>
+        <div class="tl-org">FIAP</div>
+        <p>Próximo passo: aprofundar arquitetura de software, engenharia e desenvolvimento em escala.</p>
       </div>
     </div>
   </section>
@@ -378,25 +399,27 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     <div class="stack-group reveal">
       <div class="stack-label">Redes e segurança</div>
       <div class="stack">
-        <div class="chip"><img src="https://www.citypng.com/public/uploads/preview/cisco-square-blue-logo-icon-png-735811696612218gzoiadfplh.png" alt=""><b>Cisco</b></div>
-        <div class="chip"><img src="https://www.itandgeneral.com/wp-content/uploads/2023/11/pfsense-logo-square.png" alt=""><b>pfSense</b></div>
-        <div class="chip"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtwMkhmSp7FqIQKoqYW8epUYDvZAs4uaUrkw&s" alt=""><b>Fortinet</b></div>
-        <div class="chip"><img src="https://img.freepik.com/vetores-premium/estilo-de-icone-de-bloqueio-de-seguranca-do-firewall-de-design-vetorial_822882-131686.jpg" alt=""><b>Firewall</b></div>
-        <div class="chip"><img src="https://www.entelco.com.br/blog/wp-content/uploads/2015/10/TCP-IP-2.png" alt=""><b>TCP/IP</b></div>
-        <div class="chip"><img src="https://symbols.getvecta.com/stencil_27/42_dns.092432ba49.jpg" alt=""><b>DNS</b></div>
+        <div class="chip"><img src="https://cdn.simpleicons.org/cisco/1BA0D7" alt=""><b>Cisco</b></div>
+        <div class="chip"><img src="https://cdn.simpleicons.org/pfsense/EDEDEF" alt=""><b>pfSense</b></div>
+        <div class="chip"><img src="https://cdn.simpleicons.org/fortinet/EE3124" alt=""><b>Fortinet</b></div>
+        <div class="chip"><img src="https://api.iconify.design/lucide/shield-check.svg?color=%23FF6B1A" alt=""><b>Firewall</b></div>
+        <div class="chip"><img src="https://api.iconify.design/lucide/network.svg?color=%23EDEDEF" alt=""><b>TCP/IP</b></div>
+        <div class="chip"><img src="https://api.iconify.design/lucide/globe.svg?color=%23EDEDEF" alt=""><b>DNS</b></div>
       </div>
     </div>
 
     <div class="stack-group reveal">
       <div class="stack-label">Cloud e servidores</div>
       <div class="stack">
-        <div class="chip"><img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-avatar/avatars/aws.webp" alt=""><b>AWS</b></div>
-        <div class="chip"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/250px-Microsoft_Azure.svg.png" alt=""><b>Azure</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt=""><b>AWS</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt=""><b>Azure</b></div>
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt=""><b>Google Cloud</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt=""><b>Oracle Cloud</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" alt=""><b>Terraform</b></div>
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt=""><b>Linux</b></div>
-        <div class="chip"><img src="https://softwaresprime.com.br/wp-content/uploads/2021/12/microsoft-windows-server-2022-standard.png" alt=""><b>Windows Server</b></div>
-        <div class="chip"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Vmware_workstation_16_icon.svg/960px-Vmware_workstation_16_icon.svg.png" alt=""><b>VMware</b></div>
-        <div class="chip"><img src="https://cdn.iconscout.com/icon/free/png-256/free-nginx-logo-icon-svg-download-png-3030173.png?f=webp&w=128" alt=""><b>Nginx</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows11/windows11-original.svg" alt=""><b>Windows Server</b></div>
+        <div class="chip"><img src="https://cdn.simpleicons.org/vmware/EDEDEF" alt=""><b>VMware</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt=""><b>Nginx</b></div>
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" alt=""><b>Apache</b></div>
       </div>
     </div>
@@ -405,8 +428,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       <div class="stack-label">Observabilidade</div>
       <div class="stack">
         <div class="chip"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Zabbix_logo_square.svg" alt=""><b>Zabbix</b></div>
-        <div class="chip"><img src="https://images.icon-icons.com/2699/PNG/512/grafana_logo_icon_171048.png" alt=""><b>Grafana</b></div>
-        <div class="chip"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/1280px-Prometheus_software_logo.svg.png" alt=""><b>Prometheus</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt=""><b>Grafana</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" alt=""><b>Prometheus</b></div>
       </div>
     </div>
 
@@ -415,12 +438,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       <div class="stack">
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt=""><b>Python</b></div>
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt=""><b>JavaScript</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt=""><b>TypeScript</b></div>
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt=""><b>Node.js</b></div>
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt=""><b>React</b></div>
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt=""><b>PostgreSQL</b></div>
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt=""><b>Docker</b></div>
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt=""><b>Git</b></div>
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt=""><b>Arduino</b></div>
+        <div class="chip"><img src="https://cdn.simpleicons.org/espressif/E7352C" alt=""><b>ESP32</b></div>
+        <div class="chip"><img src="https://cdn.simpleicons.org/mqtt/EDEDEF" alt=""><b>MQTT</b></div>
       </div>
     </div>
   </section>
@@ -428,7 +454,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   <section class="sec" id="certificacoes">
     <div class="sec-head reveal">
       <span class="sec-num">04</span><h2 class="sec-title">Certificações</h2>
-      <span class="sec-note">06 credenciais verificáveis</span>
+      <span class="sec-note">10 credenciais verificáveis</span>
     </div>
     <div class="certs reveal">
 
@@ -462,9 +488,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       <div class="cert-c">
         <img src="https://images.credly.com/images/505080ad-3731-4b1d-98df-347655a45750/image.png" alt="Badge Google Cloud">
         <div class="cert-b">
-          <div class="cert-issuer">Google Cloud</div>
-          <h4>Cibersegurança em Nuvem</h4>
-          <a href="https://image2url.com/r2/default/files/1771959050883-989b9b7a-ddc2-4670-bba7-cb32743804d2.pdf" target="_blank" rel="noopener">Ver certificado →</a>
+          <div class="cert-issuer">Google Cloud · SENAI</div>
+          <h4>Implantação de Serviços de Cibersegurança em Nuvem</h4>
+          <a href="https://www.sp.senai.br/consulta-certificado?qrcode=13424245684/14772837" target="_blank" rel="noopener">Verificar no SENAI →</a>
         </div>
       </div>
 
@@ -481,8 +507,44 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
         <img src="https://images.credly.com/size/220x220/images/20082fc1-94af-4773-9df0-28856b566748/image.png" alt="Badge Fortinet">
         <div class="cert-b">
           <div class="cert-issuer">Fortinet</div>
-          <h4>Certified Associate Cybersecurity</h4>
+          <h4>Certified Associate in Cybersecurity</h4>
           <a href="https://www.credly.com/earner/earned/share/cf82be9b-3b3a-4f18-8aba-dea441fa30d8" target="_blank" rel="noopener">Ver credencial →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://cdn.simpleicons.org/fortinet/EE3124" alt="Fortinet">
+        <div class="cert-b">
+          <div class="cert-issuer">Fortinet</div>
+          <h4>Certified Fundamentals in Cybersecurity</h4>
+          <a href="https://www.linkedin.com/in/matheus-ziravello-283b18310/details/certifications/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle">
+        <div class="cert-b">
+          <div class="cert-issuer">Oracle · Alura</div>
+          <h4>Oracle Cloud Infrastructure: explorando o ambiente e funcionalidades</h4>
+          <a href="https://www.linkedin.com/in/matheus-ziravello-283b18310/details/certifications/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows11/windows11-original.svg" alt="Windows Server">
+        <div class="cert-b">
+          <div class="cert-issuer">SENAI</div>
+          <h4>Administração em Servidores Windows</h4>
+          <a href="https://www.linkedin.com/in/matheus-ziravello-283b18310/details/certifications/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://api.iconify.design/lucide/shield-check.svg?color=%23FF6B1A" alt="Segurança cibernética">
+        <div class="cert-b">
+          <div class="cert-issuer">SENAI</div>
+          <h4>Por Dentro da Segurança Cibernética</h4>
+          <a href="https://www.linkedin.com/in/matheus-ziravello-283b18310/details/certifications/" target="_blank" rel="noopener">Ver no LinkedIn →</a>
         </div>
       </div>
 
@@ -497,77 +559,131 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     <div class="work reveal">
 
       <article class="card">
-        <div class="card-top"><span class="card-idx">/01</span><div class="logos">
-          <img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-avatar/avatars/aws.webp" alt="">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/250px-Microsoft_Azure.svg.png" alt="">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt=""></div></div>
-        <h3>TechStock</h3>
-        <p>Controle de estoque em arquitetura multi-cloud, com carga distribuída entre AWS e Azure e monitoramento contínuo. Projeto integrador do curso técnico, entregue com documentação completa de infraestrutura.</p>
-        <div class="tags"><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">Docker</span><span class="tag">Monitoramento</span></div>
+        <div class="card-top"><span class="card-idx">/01 · produção</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt=""></div></div>
+        <h3>FlowGest</h3>
+        <p>CRM SaaS em produção para representantes comerciais autônomos: clientes, funil de vendas, histórico de contatos, lembretes de retorno e agenda sincronizada com o Google Calendar. Feito de ponta a ponta, do frontend ao deploy, com pagamentos via Pix e cartão, HTTPS, monitoramento, backups criptografados e recursos pensados para a LGPD.</p>
+        <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">SaaS</span></div>
+        <a class="card-link" href="https://www.florgestr.com" target="_blank" rel="noopener">Acessar o FlowGest →</a>
       </article>
 
       <article class="card">
         <div class="card-top"><span class="card-idx">/02</span><div class="logos">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="">
-          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt=""></div></div>
-        <h3>FlowGest</h3>
-        <p>CRM em formato SaaS para times de vendas — pipeline, follow-up e relatórios numa base só. Full-stack próprio, pensado para rodar barato e escalar por tenant.</p>
-        <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span><span class="tag">SaaS</span></div>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="">
+          <img src="https://cdn.simpleicons.org/anthropic/EDEDEF" alt=""></div></div>
+        <h3>Jarvis</h3>
+        <p>Assistente pessoal por voz em português: ouve pelo microfone, executa tarefas com o Claude Agent SDK e responde falando (Edge TTS). Tem wake word, interrupção por voz, confirmação verbal para comandos sensíveis, conectores de Gmail e Calendar e roda como serviço systemd no Linux.</p>
+        <div class="tags"><span class="tag">Node.js</span><span class="tag">Claude Agent SDK</span><span class="tag">Web Speech API</span><span class="tag">systemd</span></div>
+        <a class="card-link" href="https://github.com/MathZiraA/jarvis" target="_blank" rel="noopener">Ver no GitHub →</a>
       </article>
 
       <article class="card">
         <div class="card-top"><span class="card-idx">/03</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" alt=""></div></div>
+        <h3>TechStock</h3>
+        <p>Projeto integrador do 3º semestre: infraestrutura de um sistema de controle de estoque em AWS e Azure, provisionada com Terraform, com banco RDS, dashboard em Power BI, topologia documentada e relatórios de custo mensais das duas nuvens.</p>
+        <div class="tags"><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">Terraform</span><span class="tag">RDS</span><span class="tag">Power BI</span></div>
+        <a class="card-link" href="https://github.com/MathZiraA/Projeto-Final-Redes-3-Semestre-ENTREGA-AWS-AZURE-FINAL" target="_blank" rel="noopener">Ver no GitHub →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/04</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt=""></div></div>
+        <h3>Infraestrutura Corporativa no Azure</h3>
+        <p>Ambiente em nuvem com VMs Linux e Windows, VNets com sub-redes públicas e privadas, NSGs, acesso seguro via Azure Bastion e SSH, Azure File Share, NAT Gateway, Load Balancer e aplicação web publicada com NGINX.</p>
+        <div class="tags"><span class="tag">Azure</span><span class="tag">VNet</span><span class="tag">NSG</span><span class="tag">Bastion</span><span class="tag">Load Balancer</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/05</span><div class="logos">
+          <img src="https://cdn.simpleicons.org/vmware/EDEDEF" alt="">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Zabbix_logo_square.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt=""></div></div>
+        <h3>ESXi + pfSense + Zabbix + Grafana</h3>
+        <p>Infraestrutura virtualizada em servidor físico com VMware ESXi: três VMs (NGINX, Apache2 e Windows Server com IIS) protegidas por pfSense e monitoradas em tempo real pelo Zabbix, com dashboards no Grafana e monitoramento de serviços como SSH.</p>
+        <div class="tags"><span class="tag">VMware ESXi</span><span class="tag">pfSense</span><span class="tag">Zabbix</span><span class="tag">Grafana</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/06</span><div class="logos">
+          <img src="https://cdn.simpleicons.org/pfsense/EDEDEF" alt="">
+          <img src="https://api.iconify.design/lucide/factory.svg?color=%23EDEDEF" alt="">
+          <img src="https://api.iconify.design/lucide/shield-check.svg?color=%23FF6B1A" alt=""></div></div>
+        <h3>Segurança de Rede Industrial</h3>
+        <p>Projeto de segurança para um ambiente industrial (TI e OT) com pfSense como firewall central: segmentação entre a rede corporativa e a rede de produção com servidor SCADA, acesso remoto seguro e políticas alinhadas às boas práticas de segurança industrial.</p>
+        <div class="tags"><span class="tag">pfSense</span><span class="tag">OT/SCADA</span><span class="tag">Segmentação</span><span class="tag">VPN</span></div>
+        <a class="card-link" href="https://github.com/MathZiraA/PROJETO-INFRAESTRUTURA-COM-PFSENSE" target="_blank" rel="noopener">Ver no GitHub →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/07</span><div class="logos">
+          <img src="https://cdn.simpleicons.org/espressif/E7352C" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt=""></div></div>
+        <h3>Carrinho Autônomo</h3>
+        <p>Robô móvel com ESP32 programado em C++: segue linha com sensores infravermelhos, detecta obstáculos com sensor de distância a laser (ToF) e executa manobras de desvio antes de retomar a rota, com quatro motores DC e LEDs de status.</p>
+        <div class="tags"><span class="tag">ESP32</span><span class="tag">C++</span><span class="tag">Sensores</span><span class="tag">Robótica</span></div>
+        <a class="card-link" href="https://github.com/MathZiraA/Projeto-Final-Redes-1-SEMESTRE" target="_blank" rel="noopener">Ver no GitHub →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/08</span><div class="logos">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="">
-          <img src="https://automacaoexpert.com/wp-content/uploads/2022/08/MQTT-300x257.jpg" alt=""></div></div>
+          <img src="https://api.iconify.design/lucide/message-circle.svg?color=%23EDEDEF" alt=""></div></div>
         <h3>Assistente WhatsApp com IA</h3>
         <p>Automação de atendimento no WhatsApp: fluxo orquestrado em n8n, mensagens via Evolution API e inferência na Groq. Responde, classifica e encaminha sem intervenção manual.</p>
         <div class="tags"><span class="tag">n8n</span><span class="tag">Evolution API</span><span class="tag">Groq</span><span class="tag">Webhooks</span></div>
       </article>
 
       <article class="card">
-        <div class="card-top"><span class="card-idx">/04</span><div class="logos">
-          <img src="https://www.itandgeneral.com/wp-content/uploads/2023/11/pfsense-logo-square.png" alt="">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtwMkhmSp7FqIQKoqYW8epUYDvZAs4uaUrkw&s" alt="">
-          <img src="https://img.freepik.com/vetores-premium/estilo-de-icone-de-bloqueio-de-seguranca-do-firewall-de-design-vetorial_822882-131686.jpg" alt=""></div></div>
+        <div class="card-top"><span class="card-idx">/09</span><div class="logos">
+          <img src="https://cdn.simpleicons.org/pfsense/EDEDEF" alt="">
+          <img src="https://cdn.simpleicons.org/fortinet/EE3124" alt="">
+          <img src="https://api.iconify.design/lucide/shield-check.svg?color=%23FF6B1A" alt=""></div></div>
         <h3>Firewall Lab</h3>
         <p>Ambiente de segurança com pfSense e Fortinet: regras de firewall, túneis VPN e segmentação de rede por VLAN, com testes de política entre segmentos.</p>
         <div class="tags"><span class="tag">pfSense</span><span class="tag">Fortinet</span><span class="tag">VPN</span><span class="tag">VLAN</span></div>
       </article>
 
       <article class="card">
-        <div class="card-top"><span class="card-idx">/05</span><div class="logos">
-          <img src="https://raw.githubusercontent.com/lobehub/lobe-icons/refs/heads/master/packages/static-avatar/avatars/aws.webp" alt="">
+        <div class="card-top"><span class="card-idx">/10</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="">
-          <img src="https://images.icon-icons.com/2699/PNG/512/grafana_logo_icon_171048.png" alt=""></div></div>
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt=""></div></div>
         <h3>Multi-Cloud Arch</h3>
         <p>Arquitetura híbrida distribuída entre AWS, Azure e GCP, com monitoramento centralizado em Grafana e alertas via Prometheus.</p>
         <div class="tags"><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Grafana</span></div>
       </article>
 
       <article class="card">
-        <div class="card-top"><span class="card-idx">/06</span><div class="logos">
-          <img src="https://www.citypng.com/public/uploads/preview/cisco-square-blue-logo-icon-png-735811696612218gzoiadfplh.png" alt="">
-          <img src="https://cisco-packet-tracer.fileion.com/storage/software/logos/2025/06/cisco-packet-tracer.png" alt="">
-          <img src="https://symbols.getvecta.com/stencil_27/42_dns.092432ba49.jpg" alt=""></div></div>
+        <div class="card-top"><span class="card-idx">/11</span><div class="logos">
+          <img src="https://cdn.simpleicons.org/cisco/1BA0D7" alt="">
+          <img src="https://api.iconify.design/lucide/router.svg?color=%23EDEDEF" alt=""></div></div>
         <h3>Cisco Network Lab</h3>
         <p>Simulação de redes corporativas no Packet Tracer com OSPF, BGP e STP, além de implementação de políticas de QoS entre filiais.</p>
         <div class="tags"><span class="tag">Cisco</span><span class="tag">OSPF</span><span class="tag">BGP</span><span class="tag">Packet Tracer</span></div>
       </article>
 
       <article class="card">
-        <div class="card-top"><span class="card-idx">/07</span><div class="logos">
-          <img src="https://softwaresprime.com.br/wp-content/uploads/2021/12/microsoft-windows-server-2022-standard.png" alt="">
+        <div class="card-top"><span class="card-idx">/12</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows11/windows11-original.svg" alt="">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="">
           <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Zabbix_logo_square.svg" alt=""></div></div>
         <h3>Server Infrastructure</h3>
-        <p>Administração de servidores Windows Server e Linux com Active Directory, DNS e DHCP, virtualizados em VMware e monitorados via Zabbix.</p>
+        <p>Administração de servidores Windows Server e Linux com Active Directory, GPO, DNS e DHCP, virtualizados em VMware e Hyper-V e monitorados via Zabbix.</p>
         <div class="tags"><span class="tag">Windows Server</span><span class="tag">Linux</span><span class="tag">Active Directory</span><span class="tag">Zabbix</span></div>
       </article>
 
       <article class="card">
-        <div class="card-top"><span class="card-idx">/08</span><div class="logos">
-          <img src="https://cdn.iconscout.com/icon/free/png-256/free-nginx-logo-icon-svg-download-png-3030173.png?f=webp&w=128" alt="">
+        <div class="card-top"><span class="card-idx">/13</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" alt="">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt=""></div></div>
         <h3>Web Server Stack</h3>
@@ -576,9 +692,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
       </article>
 
       <article class="card">
-        <div class="card-top"><span class="card-idx">/09</span><div class="logos">
+        <div class="card-top"><span class="card-idx">/14</span><div class="logos">
           <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt="">
-          <img src="https://automacaoexpert.com/wp-content/uploads/2022/08/MQTT-300x257.jpg" alt=""></div></div>
+          <img src="https://cdn.simpleicons.org/mqtt/EDEDEF" alt=""></div></div>
         <h3>IoT Network</h3>
         <p>Rede IoT sobre protocolo MQTT com sensores Arduino e dashboard de monitoramento em tempo real dos dispositivos embarcados.</p>
         <div class="tags"><span class="tag">Arduino</span><span class="tag">MQTT</span><span class="tag">IoT</span><span class="tag">Dashboard</span></div>
@@ -595,12 +711,14 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     <div class="contact-grid">
       <div class="reveal">
         <p class="ct-h">Vamos<br>construir<br><u>algo.</u></p>
-        <p class="ct-p">Aberto a colaborações e troca de conhecimento em redes, infraestrutura, segurança e desenvolvimento de sistemas.</p>
+        <p class="ct-p">Aberto a oportunidades de estágio, colaborações e troca de conhecimento em redes, infraestrutura, segurança e desenvolvimento de sistemas.</p>
         <div class="links">
           <a class="link" href="https://github.com/MathZiraA" target="_blank" rel="noopener">
             <span><small>Código</small><b>github.com/MathZiraA</b></span><i>→</i></a>
-          <a class="link" href="https://www.linkedin.com/in/mathziraa" target="_blank" rel="noopener">
-            <span><small>Rede profissional</small><b>linkedin.com/in/mathziraa</b></span><i>→</i></a>
+          <a class="link" href="https://www.linkedin.com/in/matheus-ziravello-283b18310" target="_blank" rel="noopener">
+            <span><small>Rede profissional</small><b>LinkedIn · Matheus Ziravello</b></span><i>→</i></a>
+          <a class="link" href="https://www.florgestr.com" target="_blank" rel="noopener">
+            <span><small>Produto</small><b>FlowGest · CRM</b></span><i>→</i></a>
           <a class="link" href="https://mathziraa.github.io" target="_blank" rel="noopener">
             <span><small>Portfólio</small><b>mathziraa.github.io</b></span><i>→</i></a>
         </div>
@@ -629,7 +747,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
   <footer>
     <span>© 2026 <b>Matheus Maciel Ziravello</b></span>
-    <span>TIPS Tecnologia · SENAI São Caetano do Sul</span>
+    <span>Compre &amp; Alugue Agora · FlowGest · SENAI · FIAP</span>
   </footer>
 </main>
 
@@ -692,12 +810,15 @@ const certs = [
   ['CCNA','Enterprise Networking, Security and Automation'],
   ['Google Cloud','Cibersegurança em Nuvem'],
   ['AWS Academy','Cloud Foundations'],
-  ['Fortinet','Certified Associate Cybersecurity']
+  ['Oracle','Cloud Infrastructure'],
+  ['Fortinet','Certified Associate in Cybersecurity'],
+  ['Fortinet','Certified Fundamentals in Cybersecurity'],
+  ['SENAI','Administração em Servidores Windows']
 ];
 const row = certs.map(([k,v]) => '<div class="mq"><s>&#9670;</s>' + k + ' <span style="color:var(--txt-mute)">/</span> ' + v + '</div>').join('');
 document.getElementById('track').innerHTML = row + row;
 
-const roles = ['Tecnologia da Informação @ TIPS Tecnologia','Infraestrutura de redes','Segurança e firewall','Multi-cloud: AWS · Azure · GCP','Desenvolvimento de sistemas'];
+const roles = ['Estagiário de TI @ Compre & Alugue Agora','Criador do FlowGest · Full Stack','Infraestrutura de redes','Segurança e firewall','Multi-cloud: AWS · Azure · GCP','Eng. de Software @ FIAP · 2027'];
 const roleEl = document.getElementById('role');
 if (reduce) { roleEl.innerHTML = '<b>' + roles[0] + '</b>'; }
 else {
@@ -719,11 +840,13 @@ const lines = [
   ['tv',' 2  cisco-ccna          3 ms   itn · srwe · ensa\n'],
   ['tv',' 3  aws-academy         4 ms   cloud foundations\n'],
   ['tv',' 4  google-cloud        4 ms   cybersecurity\n'],
-  ['tv',' 5  fortinet            5 ms   certified associate\n'],
-  ['tv',' 6  tips-tecnologia     1 ms   '],['tp','destino alcançado\n\n'],
+  ['tv',' 5  fortinet            5 ms   fca · fcf\n'],
+  ['tv',' 6  tips-tecnologia     3 ms   estágio ti\n'],
+  ['tv',' 7  flowgest            2 ms   saas em produção\n'],
+  ['tv',' 8  compre-alugue       1 ms   '],['tp','destino alcançado\n\n'],
   ['tp','$ '],['tk','systemctl status perfil\n'],
   ['tv','● perfil.service — '],['tp','active (running)\n'],
-  ['tv','   since 13.08.2026\n'],
+  ['tv','   next: fiap · eng. de software 2027\n'],
   ['tp','$ ']
 ];
 const term = document.getElementById('term');
