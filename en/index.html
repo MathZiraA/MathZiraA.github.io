@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matheus Maciel Ziravello — Networking, Security & Development</title>
+<meta name="description" content="Portfolio of Matheus Maciel Ziravello — network infrastructure, security, multi-cloud and software development.">
+<link rel="alternate" hreflang="pt-BR" href="https://mathziraa.github.io/">
+<link rel="alternate" hreflang="en" href="https://mathziraa.github.io/en/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mathziraa.github.io/en/">
+<meta property="og:title" content="Matheus Ziravello — Networking, Cloud, Security & Development">
+<meta property="og:description" content="IT Intern, creator of FlowGest and Network Technician student at SENAI. Projects, stack and certifications.">
+<meta property="og:image" content="https://avatars.githubusercontent.com/MathZiraA?size=400">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#08080A;
+  --surface:#101013;
+  --raised:#16171B;
+  --line:#232428;
+  --line-hi:#33343A;
+  --txt:#EDEDEF;
+  --txt-dim:#9A9BA2;
+  --txt-mute:#65666D;
+  --ember:#FF6B1A;
+  --ember-hi:#FF8A45;
+  --ember-deep:#C9430A;
+  --glow:rgba(255,107,26,.13);
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --display:'Space Grotesk',sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--ink);color:var(--txt);font-family:var(--body);font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--ember);color:#08080A}
+img{display:block}
+
+.grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:72px 72px;opacity:.26;
+  mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%);
+  -webkit-mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%)}
+.spotlight{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(520px circle at var(--mx,50%) var(--my,15%),var(--glow),transparent 70%);transition:background .18s ease-out}
+.scanline{position:fixed;left:0;right:0;top:0;height:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,var(--ember),transparent);opacity:.45;animation:scan 11s linear infinite}
+@keyframes scan{0%{transform:translateY(0);opacity:0}8%{opacity:.45}92%{opacity:.45}100%{transform:translateY(100vh);opacity:0}}
+.prog{position:fixed;top:0;left:0;height:2px;background:var(--ember);width:0;z-index:60;transition:width .1s linear}
+
+.shell{position:relative;z-index:3;max-width:1120px;margin:0 auto;padding:0 28px}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(14px);background:rgba(8,8,10,.72);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+.nav.stuck{border-bottom-color:var(--line);background:rgba(8,8,10,.92)}
+.nav-in{max-width:1120px;margin:0 auto;padding:17px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.mark{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--ember);animation:beacon 2.4s ease-out infinite}
+@keyframes beacon{0%{box-shadow:0 0 0 0 rgba(255,107,26,.55)}70%{box-shadow:0 0 0 9px rgba(255,107,26,0)}100%{box-shadow:0 0 0 0 rgba(255,107,26,0)}}
+.nav-links{display:flex;gap:24px;font-family:var(--mono);font-size:11.5px;letter-spacing:.07em}
+.nav-links a{color:var(--txt-mute);text-decoration:none;position:relative;padding:4px 0;transition:color .25s}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--ember);transition:width .3s cubic-bezier(.2,.8,.2,1)}
+.nav-links a:hover,.nav-links a.on{color:var(--txt)}
+.nav-links a:hover::after,.nav-links a.on::after{width:100%}
+.langs{display:flex;border:1px solid var(--line-hi);border-radius:2px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;flex-shrink:0}
+.langs b,.langs a{padding:4px 9px;font-weight:400}
+.langs b{background:var(--ember);color:#08080A}
+.langs a{color:var(--txt-mute);text-decoration:none;transition:color .25s}
+.langs a:hover{color:var(--txt)}
+
+.hero{min-height:100vh;display:flex;align-items:center;padding:130px 0 80px}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:50px;align-items:center;width:100%}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ember);display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.eyebrow::before{content:'';width:32px;height:1px;background:var(--ember);transform-origin:left;animation:rule .9s .3s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rule{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.name{font-family:var(--display);font-weight:700;font-size:clamp(42px,8vw,98px);line-height:.93;letter-spacing:-.035em;text-transform:uppercase;margin-bottom:22px}
+.name span{display:block;overflow:hidden}
+.name span i{display:block;font-style:normal;animation:riseIn 1s cubic-bezier(.2,.85,.2,1) both}
+.name span:nth-child(1) i{animation-delay:.12s}
+.name span:nth-child(2) i{animation-delay:.24s}
+.name span:nth-child(3) i{animation-delay:.36s;color:var(--ember)}
+@keyframes riseIn{from{transform:translateY(105%) skewY(5deg);opacity:0}to{transform:none;opacity:1}}
+.role{font-family:var(--mono);font-size:14px;color:var(--txt-dim);margin-bottom:20px;min-height:22px;animation:fadeUp .9s .5s cubic-bezier(.2,.8,.2,1) both}
+.role b{color:var(--ember);font-weight:400}
+.lede{max-width:560px;font-size:16.5px;color:var(--txt-dim);animation:fadeUp .9s .62s cubic-bezier(.2,.8,.2,1) both}
+.lede b{color:var(--txt);font-weight:500}
+@keyframes fadeUp{from{transform:translateY(18px);opacity:0}to{transform:none;opacity:1}}
+.cta-row{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;animation:fadeUp .9s .74s cubic-bezier(.2,.8,.2,1) both}
+.btn{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:13px 24px;border-radius:2px;text-decoration:none;position:relative;overflow:hidden;border:1px solid var(--line-hi);color:var(--txt);transition:color .3s,border-color .3s;z-index:0}
+.btn::before{content:'';position:absolute;inset:0;background:var(--ember);transform:translateY(101%);transition:transform .4s cubic-bezier(.2,.8,.2,1);z-index:-1}
+.btn span{position:relative;z-index:1}
+.btn:hover{color:#08080A;border-color:var(--ember)}
+.btn:hover::before{transform:translateY(0)}
+.btn.solid{background:var(--ember);border-color:var(--ember);color:#08080A;font-weight:500}
+.btn.solid::before{background:#fff}
+
+.term{background:var(--surface);border:1px solid var(--line);border-radius:6px;font-family:var(--mono);font-size:12.5px;line-height:1.85;animation:fadeUp 1s .5s cubic-bezier(.2,.8,.2,1) both;box-shadow:0 24px 60px -20px rgba(0,0,0,.85)}
+.term-bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line)}
+.term-bar i{width:9px;height:9px;border-radius:50%;background:var(--line-hi)}
+.term-bar i:first-child{background:var(--ember-deep)}
+.term-bar em{margin-left:8px;font-style:normal;font-size:11px;color:var(--txt-mute);letter-spacing:.04em}
+.term-body{padding:16px 16px 20px;min-height:280px}
+.term-body p{white-space:pre-wrap;word-break:break-word}
+.tp{color:var(--ember)}
+.tv{color:var(--txt-dim)}
+.tk{color:var(--txt)}
+.cursor{display:inline-block;width:8px;height:14px;background:var(--ember);vertical-align:-2px;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+
+.sec{padding:104px 0;position:relative}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:44px;border-bottom:1px solid var(--line);padding-bottom:18px;flex-wrap:wrap}
+.sec-num{font-family:var(--mono);font-size:11px;color:var(--ember);letter-spacing:.14em}
+.sec-title{font-family:var(--display);font-size:clamp(24px,3.4vw,34px);font-weight:600;letter-spacing:-.02em}
+.sec-note{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--txt-mute);letter-spacing:.06em}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+.now{display:flex;align-items:center;gap:14px;padding:16px 20px;border:1px solid var(--line);background:var(--surface);border-radius:4px;margin-top:34px;flex-wrap:wrap;animation:fadeUp .9s .86s cubic-bezier(.2,.8,.2,1) both}
+.now .live{width:8px;height:8px;border-radius:50%;background:var(--ember);flex-shrink:0;animation:beacon 2.4s ease-out infinite}
+.now p{font-family:var(--mono);font-size:12px;color:var(--txt-dim)}
+.now p b{color:var(--txt);font-weight:500}
+.now time{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--txt-mute);letter-spacing:.06em}
+
+.about{display:grid;grid-template-columns:1.32fr 1fr;gap:54px;align-items:start}
+.about p{color:var(--txt-dim);font-size:16px;margin-bottom:17px}
+.about p strong{color:var(--txt);font-weight:500}
+.stats{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.stat{background:var(--surface);padding:19px 22px;transition:background .3s}
+.stat:hover{background:var(--raised)}
+.stat b{display:block;font-family:var(--display);font-size:32px;font-weight:600;color:var(--ember);letter-spacing:-.02em;line-height:1}
+.stat em{font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--txt-mute);letter-spacing:.08em;text-transform:uppercase}
+
+.topo{border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:8px;margin-top:24px}
+.topo svg{display:block;width:100%;height:auto}
+.node-c{fill:var(--raised);stroke:var(--line-hi);stroke-width:1}
+.node-c.hot{stroke:var(--ember)}
+.link-l{stroke:var(--line-hi);stroke-width:1;fill:none}
+.flow{stroke:var(--ember);stroke-width:1.4;fill:none;stroke-dasharray:5 190;animation:dash 3.4s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-390}}
+.nlab{font-family:var(--mono);font-size:9px;fill:var(--txt-mute);letter-spacing:.06em}
+.pulse-r{fill:none;stroke:var(--ember);animation:ring 2.8s ease-out infinite}
+@keyframes ring{0%{r:9;opacity:.7}100%{r:26;opacity:0}}
+
+.tl{border-left:1px solid var(--line);margin-left:6px}
+.tl-item{position:relative;padding:0 0 40px 32px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:'';position:absolute;left:-5px;top:7px;width:9px;height:9px;border-radius:50%;background:var(--ink);border:1px solid var(--line-hi);transition:border-color .3s,background .3s}
+.tl-item.live::before{background:var(--ember);border-color:var(--ember);box-shadow:0 0 0 4px rgba(255,107,26,.15)}
+.tl-item:hover::before{border-color:var(--ember)}
+.tl-when{font-family:var(--mono);font-size:11px;color:var(--ember);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.tl-item h3{font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:-.015em;margin-bottom:3px}
+.tl-org{font-family:var(--mono);font-size:12px;color:var(--txt-mute);margin-bottom:10px}
+.tl-item p{color:var(--txt-dim);font-size:15px;max-width:640px}
+
+.stack-group{margin-bottom:34px}
+.stack-group:last-child{margin-bottom:0}
+.stack-label{font-family:var(--mono);font-size:11px;color:var(--txt-mute);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.stack-label::after{content:'';flex:1;height:1px;background:var(--line)}
+.stack{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.chip{background:var(--surface);padding:15px 16px;position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;transition:background .35s}
+.chip::after{content:'';position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--ember);transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.chip:hover{background:var(--raised)}
+.chip:hover::after{width:100%}
+.chip img{width:24px;height:24px;object-fit:contain;flex-shrink:0;filter:grayscale(1) brightness(1.5) opacity(.5);transition:filter .35s,transform .35s}
+.chip:hover img{filter:none;transform:scale(1.12)}
+.chip b{font-weight:400;font-size:13.5px;color:var(--txt-dim);transition:color .3s}
+.chip:hover b{color:var(--txt)}
+
+.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.cert-c{background:var(--surface);padding:24px;display:flex;gap:18px;align-items:flex-start;position:relative;overflow:hidden;transition:background .4s}
+.cert-c::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .4s;background:radial-gradient(320px circle at var(--cx,50%) var(--cy,50%),rgba(255,107,26,.08),transparent 65%)}
+.cert-c:hover{background:var(--raised)}
+.cert-c:hover::before{opacity:1}
+.cert-c>*{position:relative;z-index:1}
+.cert-c img{width:58px;height:58px;object-fit:contain;flex-shrink:0;filter:grayscale(1) opacity(.55);transition:filter .4s,transform .4s}
+.cert-c:hover img{filter:none;transform:scale(1.06)}
+.cert-b{flex:1;min-width:0}
+.cert-issuer{font-family:var(--mono);font-size:10px;color:var(--ember);letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.cert-b h4{font-family:var(--display);font-size:15px;font-weight:500;line-height:1.35;margin-bottom:12px;letter-spacing:-.01em}
+.cert-b a{font-family:var(--mono);font-size:10.5px;color:var(--txt-mute);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--line-hi);padding-bottom:2px;transition:color .3s,border-color .3s}
+.cert-b a:hover{color:var(--ember);border-color:var(--ember)}
+
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:20px 0;position:relative;z-index:3}
+.marquee::before,.marquee::after{content:'';position:absolute;top:0;bottom:0;width:110px;z-index:2;pointer-events:none}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--ink),transparent)}
+.marquee::after{right:0;background:linear-gradient(270deg,var(--ink),transparent)}
+.track{display:flex;width:max-content;animation:slide 34s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.mq{display:flex;align-items:center;gap:11px;padding:0 30px;white-space:nowrap;font-family:var(--mono);font-size:12.5px;color:var(--txt-dim);border-right:1px solid var(--line)}
+.mq s{text-decoration:none;color:var(--ember);font-size:9px}
+
+.work{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.card{background:var(--surface);padding:28px;position:relative;overflow:hidden;transition:background .4s;display:flex;flex-direction:column}
+.card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .4s;background:radial-gradient(380px circle at var(--cx,50%) var(--cy,50%),rgba(255,107,26,.09),transparent 65%)}
+.card:hover{background:var(--raised)}
+.card:hover::before{opacity:1}
+.card>*{position:relative;z-index:1}
+.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.card-idx{font-family:var(--mono);font-size:11px;color:var(--ember);letter-spacing:.1em}
+.logos{display:flex;gap:7px}
+.logos img{width:20px;height:20px;object-fit:contain;filter:grayscale(1) brightness(1.5) opacity(.45);transition:filter .4s}
+.card:hover .logos img{filter:none}
+.card h3{font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:-.02em;margin-bottom:9px;transition:color .3s}
+.card:hover h3{color:var(--ember-hi)}
+.card p{color:var(--txt-dim);font-size:14.5px;margin-bottom:18px;flex:1}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:.05em;color:var(--txt-mute);border:1px solid var(--line-hi);padding:4px 9px;border-radius:2px;transition:color .3s,border-color .3s}
+.card:hover .tag{color:var(--txt-dim);border-color:var(--ember-deep)}
+.card-link{align-self:flex-start;margin-top:16px;font-family:var(--mono);font-size:10.5px;color:var(--txt-mute);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--line-hi);padding-bottom:2px;transition:color .3s,border-color .3s}
+.card-link:hover{color:var(--ember);border-color:var(--ember)}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.ct-h{font-family:var(--display);font-size:clamp(30px,5vw,54px);font-weight:700;letter-spacing:-.035em;line-height:1.02;margin-bottom:20px;text-transform:uppercase}
+.ct-h u{text-decoration:none;color:var(--ember)}
+.ct-p{color:var(--txt-dim);font-size:16px;max-width:420px}
+.links{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:30px}
+.link{background:var(--surface);padding:18px 20px;text-decoration:none;color:var(--txt);display:flex;align-items:center;justify-content:space-between;gap:14px;transition:background .3s,color .3s}
+.link:hover{background:var(--ember);color:#08080A}
+.link small{display:block;font-family:var(--mono);font-size:10px;color:var(--txt-mute);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;transition:color .3s}
+.link:hover small{color:rgba(8,8,10,.62)}
+.link b{font-weight:400;font-size:13.5px;font-family:var(--mono)}
+.link i{font-style:normal;font-family:var(--mono);transition:transform .3s}
+.link:hover i{transform:translateX(4px)}
+
+form{display:flex;flex-direction:column;gap:16px}
+.fg{display:flex;flex-direction:column;gap:7px}
+.fg label{font-family:var(--mono);font-size:10.5px;color:var(--txt-mute);letter-spacing:.14em;text-transform:uppercase}
+.fg input,.fg textarea{background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:13px 15px;color:var(--txt);font-family:var(--body);font-weight:300;font-size:15px;outline:none;transition:border-color .3s,background .3s;resize:vertical}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--txt-mute)}
+.fg input:focus,.fg textarea:focus{border-color:var(--ember);background:var(--raised)}
+.fg textarea{min-height:130px}
+.err{font-family:var(--mono);font-size:11px;color:var(--ember-hi);display:none}
+.fg.bad .err{display:block}
+.fg.bad input,.fg.bad textarea{border-color:var(--ember-deep)}
+button[type=submit]{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:15px;border-radius:2px;background:var(--ember);color:#08080A;border:1px solid var(--ember);font-weight:500;cursor:pointer;transition:background .3s,color .3s}
+button[type=submit]:hover{background:transparent;color:var(--ember)}
+
+footer{border-top:1px solid var(--line);padding:26px 0;font-family:var(--mono);font-size:11px;color:var(--txt-mute);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;letter-spacing:.05em}
+footer b{color:var(--txt-dim);font-weight:400}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--ember);outline-offset:3px}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:36px}
+  .about{grid-template-columns:1fr;gap:32px}
+  .contact-grid{grid-template-columns:1fr;gap:40px}
+  .nav-links{display:none}
+  .sec{padding:76px 0}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  .name span i{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="prog" id="prog"></div>
+<div class="grid-bg"></div>
+<div class="spotlight" id="spot"></div>
+<div class="scanline"></div>
+
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <div class="mark"><span class="dot"></span> mmz@infra:~</div>
+    <div class="nav-links">
+      <a href="#sobre">about</a>
+      <a href="#trajetoria">journey</a>
+      <a href="#stack">stack</a>
+      <a href="#certificacoes">certifications</a>
+      <a href="#projetos">projects</a>
+      <a href="#contato">contact</a>
+    </div>
+    <div class="langs"><a href="/" hreflang="pt-BR" lang="pt-BR">PT</a><b>EN</b></div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="shell hero-grid">
+    <div>
+      <div class="eyebrow">Networking · Security · Software development</div>
+      <h1 class="name">
+        <span><i>Matheus</i></span>
+        <span><i>Maciel</i></span>
+        <span><i>Ziravello</i></span>
+      </h1>
+      <p class="role" id="role"></p>
+      <p class="lede">
+        I build the layer nobody sees: <b>network infrastructure</b>,
+        <b>multi-cloud</b> environments, firewalls that hold what needs holding — and the
+        <b>software</b> that runs on top of it all.
+      </p>
+      <div class="cta-row">
+        <a class="btn solid" href="#projetos"><span>See projects</span></a>
+        <a class="btn" href="#contato"><span>Contact</span></a>
+      </div>
+      <div class="now">
+        <span class="live"></span>
+        <p>IT Intern at <b>Compre &amp; Alugue Agora</b> · building <b>FlowGest</b></p>
+        <time datetime="2026-10">since Oct 2026</time>
+      </div>
+    </div>
+
+    <div class="term">
+      <div class="term-bar"><i></i><i></i><i></i><em>traceroute — profile.mmz</em></div>
+      <div class="term-body" id="term"></div>
+    </div>
+  </div>
+</header>
+
+<main class="shell">
+
+  <section class="sec" id="sobre">
+    <div class="sec-head reveal">
+      <span class="sec-num">01</span><h2 class="sec-title">About</h2>
+      <span class="sec-note">São Paulo / Brazil</span>
+    </div>
+    <div class="about">
+      <div class="reveal">
+        <p>I study <strong>Computer Networking</strong> and <strong>Systems Development</strong> at SENAI São Caetano do Sul — two tracks that only make sense together: whoever writes the application understands better where it breaks when they know the path the packet takes.</p>
+        <p>In practice that means: building and segmenting networks with <strong>Cisco, pfSense and Fortinet</strong>, administering <strong>Linux and Windows Server</strong>, spreading workloads across <strong>AWS, Azure and GCP</strong>, and instrumenting everything with <strong>Zabbix, Grafana and Prometheus</strong>. If you can't measure it, it isn't done.</p>
+        <p>On the software side, I created and maintain <strong>FlowGest</strong>, a SaaS CRM in production built end to end with <strong>React, Node.js, TypeScript and PostgreSQL</strong>, plus AI automations and assistants such as <strong>Jarvis</strong>, my voice assistant. The bar is always the same: observable, self-healing and documented.</p>
+        <p>I'm currently an IT Intern at <strong>Compre &amp; Alugue Agora</strong>, and in 2027 I start a <strong>Bachelor's in Software Engineering at FIAP</strong>.</p>
+        <div class="topo">
+          <svg viewBox="0 0 640 150" role="img" aria-label="Animated topology: client, switch, router, firewall and cloud">
+            <path class="link-l" d="M60 75 H580"/>
+            <path class="flow" d="M60 75 H580"/>
+            <path class="flow" d="M60 75 H580" style="animation-delay:1.1s"/>
+            <path class="flow" d="M60 75 H580" style="animation-delay:2.2s"/>
+            <circle class="pulse-r" cx="580" cy="75" r="9"/>
+            <circle class="node-c" cx="60" cy="75" r="15"/>
+            <circle class="node-c" cx="190" cy="75" r="15"/>
+            <circle class="node-c" cx="320" cy="75" r="15"/>
+            <circle class="node-c" cx="450" cy="75" r="15"/>
+            <circle class="node-c hot" cx="580" cy="75" r="15"/>
+            <text class="nlab" x="60" y="112" text-anchor="middle">CLIENT</text>
+            <text class="nlab" x="190" y="112" text-anchor="middle">SWITCH</text>
+            <text class="nlab" x="320" y="112" text-anchor="middle">ROUTER</text>
+            <text class="nlab" x="450" y="112" text-anchor="middle">FIREWALL</text>
+            <text class="nlab" x="580" y="112" text-anchor="middle">CLOUD</text>
+          </svg>
+        </div>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><b data-count="10">0</b><em>Certifications</em></div>
+        <div class="stat"><b data-count="4">0</b><em>Clouds · AWS Azure GCP OCI</em></div>
+        <div class="stat"><b data-count="14">0</b><em>Projects</em></div>
+        <div class="stat"><b data-count="2">0</b><em>IT internships</em></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="trajetoria">
+    <div class="sec-head reveal">
+      <span class="sec-num">02</span><h2 class="sec-title">Journey</h2>
+      <span class="sec-note">updated Oct 2026</span>
+    </div>
+    <div class="tl reveal">
+      <div class="tl-item live">
+        <div class="tl-when">Oct 2026 — present</div>
+        <h3>IT Intern</h3>
+        <div class="tl-org">Compre &amp; Alugue Agora</div>
+        <p>Technical support for users, opening, tracking and resolving tickets, and troubleshooting computers, network and access issues.</p>
+      </div>
+      <div class="tl-item live">
+        <div class="tl-when">May 2026 — present</div>
+        <h3>Founder &amp; Full Stack Developer</h3>
+        <div class="tl-org">FlowGest</div>
+        <p>SaaS CRM in production for independent sales representatives. Built end to end: React frontend, Node.js + TypeScript backend, PostgreSQL, Docker deployment on a VPS, Pix and card payments, HTTPS, monitoring and encrypted backups.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Aug 2026 — Oct 2026</div>
+        <h3>IT Intern</h3>
+        <div class="tl-org">TIPS Tecnologia</div>
+        <p>Technical support and ticket handling, computer maintenance, and support with network, server and Iptables firewall rule configuration.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Jan 2025 — Dec 2026</div>
+        <h3>Technical Degree in Computer Networking</h3>
+        <div class="tl-org">SENAI São Caetano do Sul · Cyber &amp; AI</div>
+        <p>Infrastructure, routing and switching, perimeter security, virtualization and network services. Foundation for the three CCNA certifications.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Apr 2026 — Dec 2027</div>
+        <h3>Technical Degree in Systems Development</h3>
+        <div class="tl-org">SENAI São Caetano do Sul · Cyber &amp; AI</div>
+        <p>Full-stack development, databases and cloud integration.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-when">Starting 2027</div>
+        <h3>Bachelor's in Software Engineering</h3>
+        <div class="tl-org">FIAP</div>
+        <p>Next step: going deeper into software architecture, engineering and development at scale.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="marquee reveal"><div class="track" id="track"></div></div>
+
+<main class="shell">
+
+  <section class="sec" id="stack">
+    <div class="sec-head reveal">
+      <span class="sec-num">03</span><h2 class="sec-title">Stack</h2>
+      <span class="sec-note">infra → application</span>
+    </div>
+
+    <div class="stack-group reveal">
+      <div class="stack-label">Networking &amp; security</div>
+      <div class="stack">
+        <div class="chip"><img src="https://cdn.simpleicons.org/cisco/1BA0D7" alt=""><b>Cisco</b></div>
+        <div class="chip"><img src="https://cdn.simpleicons.org/pfsense/EDEDEF" alt=""><b>pfSense</b></div>
+        <div class="chip"><img src="https://cdn.simpleicons.org/fortinet/EE3124" alt=""><b>Fortinet</b></div>
+        <div class="chip"><img src="https://api.iconify.design/lucide/shield-check.svg?color=%23FF6B1A" alt=""><b>Firewall</b></div>
+        <div class="chip"><img src="https://api.iconify.design/lucide/network.svg?color=%23EDEDEF" alt=""><b>TCP/IP</b></div>
+        <div class="chip"><img src="https://api.iconify.design/lucide/globe.svg?color=%23EDEDEF" alt=""><b>DNS</b></div>
+      </div>
+    </div>
+
+    <div class="stack-group reveal">
+      <div class="stack-label">Cloud &amp; servers</div>
+      <div class="stack">
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt=""><b>AWS</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt=""><b>Azure</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt=""><b>Google Cloud</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt=""><b>Oracle Cloud</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" alt=""><b>Terraform</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt=""><b>Linux</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows11/windows11-original.svg" alt=""><b>Windows Server</b></div>
+        <div class="chip"><img src="https://cdn.simpleicons.org/vmware/EDEDEF" alt=""><b>VMware</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt=""><b>Nginx</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" alt=""><b>Apache</b></div>
+      </div>
+    </div>
+
+    <div class="stack-group reveal">
+      <div class="stack-label">Observability</div>
+      <div class="stack">
+        <div class="chip"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Zabbix_logo_square.svg" alt=""><b>Zabbix</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt=""><b>Grafana</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" alt=""><b>Prometheus</b></div>
+      </div>
+    </div>
+
+    <div class="stack-group reveal">
+      <div class="stack-label">Development &amp; automation</div>
+      <div class="stack">
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt=""><b>Python</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt=""><b>JavaScript</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt=""><b>TypeScript</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt=""><b>Node.js</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt=""><b>React</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt=""><b>PostgreSQL</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt=""><b>Docker</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt=""><b>Git</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt=""><b>Arduino</b></div>
+        <div class="chip"><img src="https://cdn.simpleicons.org/espressif/E7352C" alt=""><b>ESP32</b></div>
+        <div class="chip"><img src="https://cdn.simpleicons.org/mqtt/EDEDEF" alt=""><b>MQTT</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="certificacoes">
+    <div class="sec-head reveal">
+      <span class="sec-num">04</span><h2 class="sec-title">Certifications</h2>
+      <span class="sec-note">10 verifiable credentials</span>
+    </div>
+    <div class="certs reveal">
+
+      <div class="cert-c">
+        <img src="https://images.credly.com/size/680x680/images/70d71df5-f3dc-4380-9b9d-f22513a70417/CCNAITN__1_.png" alt="Badge CCNA ITN">
+        <div class="cert-b">
+          <div class="cert-issuer">Cisco</div>
+          <h4>CCNA: Introduction to Networks</h4>
+          <a href="https://www.credly.com/badges/f671fccc-1072-460d-8011-81e3b06558a0/public_url" target="_blank" rel="noopener">View credential →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://images.credly.com/size/680x680/images/f4ccdba9-dd65-4349-baad-8f05df116443/CCNASRWE__1_.png" alt="Badge CCNA SRWE">
+        <div class="cert-b">
+          <div class="cert-issuer">Cisco</div>
+          <h4>CCNA: Switching, Routing and Wireless Essentials</h4>
+          <a href="https://www.credly.com/badges/b1fb1b70-3c64-4a23-8f4d-d131164500e0/public_url" target="_blank" rel="noopener">View credential →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://images.credly.com/size/680x680/images/0a6d331e-8abf-4272-a949-33f754569a76/CCNAENSA__1_.png" alt="Badge CCNA ENSA">
+        <div class="cert-b">
+          <div class="cert-issuer">Cisco</div>
+          <h4>CCNA: Enterprise Networking, Security and Automation</h4>
+          <a href="https://www.credly.com/badges/93584b05-5748-431a-b7ca-2e0aefd1bcbf/public_url" target="_blank" rel="noopener">View credential →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://images.credly.com/images/505080ad-3731-4b1d-98df-347655a45750/image.png" alt="Badge Google Cloud">
+        <div class="cert-b">
+          <div class="cert-issuer">Google Cloud · SENAI</div>
+          <h4>Deploying Cloud Cybersecurity Services</h4>
+          <a href="https://www.sp.senai.br/consulta-certificado?qrcode=13424245684/14772837" target="_blank" rel="noopener">Verify at SENAI →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://images.credly.com/size/680x680/images/e3541a0c-dd4a-4820-8052-5001006efc85/blob" alt="Badge AWS Academy">
+        <div class="cert-b">
+          <div class="cert-issuer">Amazon Web Services</div>
+          <h4>AWS Academy Graduate — Cloud Foundations</h4>
+          <a href="https://www.credly.com/badges/26d421da-fb3c-4399-abf6-855e0268e809" target="_blank" rel="noopener">View credential →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://images.credly.com/size/220x220/images/20082fc1-94af-4773-9df0-28856b566748/image.png" alt="Badge Fortinet">
+        <div class="cert-b">
+          <div class="cert-issuer">Fortinet</div>
+          <h4>Certified Associate in Cybersecurity</h4>
+          <a href="https://www.credly.com/earner/earned/share/cf82be9b-3b3a-4f18-8aba-dea441fa30d8" target="_blank" rel="noopener">View credential →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://cdn.simpleicons.org/fortinet/EE3124" alt="Fortinet">
+        <div class="cert-b">
+          <div class="cert-issuer">Fortinet</div>
+          <h4>Certified Fundamentals in Cybersecurity</h4>
+          <a href="https://www.linkedin.com/in/matheusziravello/details/certifications/" target="_blank" rel="noopener">View on LinkedIn →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/oracle/oracle-original.svg" alt="Oracle">
+        <div class="cert-b">
+          <div class="cert-issuer">Oracle · Alura</div>
+          <h4>Oracle Cloud Infrastructure: exploring the environment and features</h4>
+          <a href="https://www.linkedin.com/in/matheusziravello/details/certifications/" target="_blank" rel="noopener">View on LinkedIn →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows11/windows11-original.svg" alt="Windows Server">
+        <div class="cert-b">
+          <div class="cert-issuer">SENAI</div>
+          <h4>Windows Server Administration</h4>
+          <a href="https://www.linkedin.com/in/matheusziravello/details/certifications/" target="_blank" rel="noopener">View on LinkedIn →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://api.iconify.design/lucide/shield-check.svg?color=%23FF6B1A" alt="Cybersecurity">
+        <div class="cert-b">
+          <div class="cert-issuer">SENAI</div>
+          <h4>Inside Cybersecurity</h4>
+          <a href="https://www.linkedin.com/in/matheusziravello/details/certifications/" target="_blank" rel="noopener">View on LinkedIn →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="projetos">
+    <div class="sec-head reveal">
+      <span class="sec-num">05</span><h2 class="sec-title">Projects</h2>
+      <span class="sec-note">lab &amp; production</span>
+    </div>
+    <div class="work reveal">
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/01 · production</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt=""></div></div>
+        <h3>FlowGest</h3>
+        <p>SaaS CRM in production for independent sales representatives: clients, sales pipeline, contact history, follow-up reminders and scheduling synced with Google Calendar. Built end to end, from frontend to deployment, with Pix and card payments, HTTPS, monitoring, encrypted backups and LGPD-oriented features.</p>
+        <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">SaaS</span></div>
+        <a class="card-link" href="https://www.florgestr.com" target="_blank" rel="noopener">Open FlowGest →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/02</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="">
+          <img src="https://cdn.simpleicons.org/anthropic/EDEDEF" alt=""></div></div>
+        <h3>Jarvis</h3>
+        <p>Personal voice assistant in Portuguese: listens through the microphone, runs tasks with the Claude Agent SDK and answers out loud (Edge TTS). Wake word, voice barge-in, verbal confirmation for sensitive commands, Gmail and Calendar connectors, running as a systemd service on Linux.</p>
+        <div class="tags"><span class="tag">Node.js</span><span class="tag">Claude Agent SDK</span><span class="tag">Web Speech API</span><span class="tag">systemd</span></div>
+        <a class="card-link" href="https://github.com/MathZiraA/jarvis" target="_blank" rel="noopener">View on GitHub →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/03</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" alt=""></div></div>
+        <h3>TechStock</h3>
+        <p>3rd-semester capstone: infrastructure for an inventory management system on AWS and Azure, provisioned with Terraform, with an RDS database, Power BI dashboard, documented topology and monthly cost reports for both clouds.</p>
+        <div class="tags"><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">Terraform</span><span class="tag">RDS</span><span class="tag">Power BI</span></div>
+        <a class="card-link" href="https://github.com/MathZiraA/Projeto-Final-Redes-3-Semestre-ENTREGA-AWS-AZURE-FINAL" target="_blank" rel="noopener">View on GitHub →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/04</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt=""></div></div>
+        <h3>Corporate Infrastructure on Azure</h3>
+        <p>Cloud environment with Linux and Windows VMs, VNets with public and private subnets, NSGs, secure access via Azure Bastion and SSH, Azure File Share, NAT Gateway, Load Balancer and a web app published with NGINX.</p>
+        <div class="tags"><span class="tag">Azure</span><span class="tag">VNet</span><span class="tag">NSG</span><span class="tag">Bastion</span><span class="tag">Load Balancer</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/05</span><div class="logos">
+          <img src="https://cdn.simpleicons.org/vmware/EDEDEF" alt="">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Zabbix_logo_square.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt=""></div></div>
+        <h3>ESXi + pfSense + Zabbix + Grafana</h3>
+        <p>Virtualized infrastructure on a physical server with VMware ESXi: three VMs (NGINX, Apache2 and Windows Server with IIS) protected by pfSense and monitored in real time with Zabbix, with Grafana dashboards and service checks such as SSH.</p>
+        <div class="tags"><span class="tag">VMware ESXi</span><span class="tag">pfSense</span><span class="tag">Zabbix</span><span class="tag">Grafana</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/06</span><div class="logos">
+          <img src="https://cdn.simpleicons.org/pfsense/EDEDEF" alt="">
+          <img src="https://api.iconify.design/lucide/factory.svg?color=%23EDEDEF" alt="">
+          <img src="https://api.iconify.design/lucide/shield-check.svg?color=%23FF6B1A" alt=""></div></div>
+        <h3>Industrial Network Security</h3>
+        <p>Security design for an industrial (IT and OT) environment with pfSense as the central firewall: segmentation between the corporate network and the production network with a SCADA server, secure remote access and policies aligned with industrial security best practices.</p>
+        <div class="tags"><span class="tag">pfSense</span><span class="tag">OT/SCADA</span><span class="tag">Segmentation</span><span class="tag">VPN</span></div>
+        <a class="card-link" href="https://github.com/MathZiraA/PROJETO-INFRAESTRUTURA-COM-PFSENSE" target="_blank" rel="noopener">View on GitHub →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/07</span><div class="logos">
+          <img src="https://cdn.simpleicons.org/espressif/E7352C" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt=""></div></div>
+        <h3>Autonomous Robot Car</h3>
+        <p>ESP32 mobile robot programmed in C++: follows a line with infrared sensors, detects obstacles with a laser distance sensor (ToF) and performs avoidance maneuvers before getting back on track, with four DC motors and status LEDs.</p>
+        <div class="tags"><span class="tag">ESP32</span><span class="tag">C++</span><span class="tag">Sensors</span><span class="tag">Robotics</span></div>
+        <a class="card-link" href="https://github.com/MathZiraA/Projeto-Final-Redes-1-SEMESTRE" target="_blank" rel="noopener">View on GitHub →</a>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/08</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="">
+          <img src="https://api.iconify.design/lucide/message-circle.svg?color=%23EDEDEF" alt=""></div></div>
+        <h3>AI WhatsApp Assistant</h3>
+        <p>WhatsApp customer service automation: workflow orchestrated in n8n, messaging via Evolution API and inference on Groq. Answers, classifies and routes with no manual intervention.</p>
+        <div class="tags"><span class="tag">n8n</span><span class="tag">Evolution API</span><span class="tag">Groq</span><span class="tag">Webhooks</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/09</span><div class="logos">
+          <img src="https://cdn.simpleicons.org/pfsense/EDEDEF" alt="">
+          <img src="https://cdn.simpleicons.org/fortinet/EE3124" alt="">
+          <img src="https://api.iconify.design/lucide/shield-check.svg?color=%23FF6B1A" alt=""></div></div>
+        <h3>Firewall Lab</h3>
+        <p>Security lab with pfSense and Fortinet: firewall rules, VPN tunnels and VLAN-based network segmentation, with policy testing across segments.</p>
+        <div class="tags"><span class="tag">pfSense</span><span class="tag">Fortinet</span><span class="tag">VPN</span><span class="tag">VLAN</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/10</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" alt=""></div></div>
+        <h3>Multi-Cloud Arch</h3>
+        <p>Hybrid architecture distributed across AWS, Azure and GCP, with centralized monitoring in Grafana and alerting via Prometheus.</p>
+        <div class="tags"><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Grafana</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/11</span><div class="logos">
+          <img src="https://cdn.simpleicons.org/cisco/1BA0D7" alt="">
+          <img src="https://api.iconify.design/lucide/router.svg?color=%23EDEDEF" alt=""></div></div>
+        <h3>Cisco Network Lab</h3>
+        <p>Corporate network simulation in Packet Tracer with OSPF, BGP and STP, plus QoS policies between branch offices.</p>
+        <div class="tags"><span class="tag">Cisco</span><span class="tag">OSPF</span><span class="tag">BGP</span><span class="tag">Packet Tracer</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/12</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows11/windows11-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5d/Zabbix_logo_square.svg" alt=""></div></div>
+        <h3>Server Infrastructure</h3>
+        <p>Windows Server and Linux administration with Active Directory, GPO, DNS and DHCP, virtualized on VMware and Hyper-V and monitored with Zabbix.</p>
+        <div class="tags"><span class="tag">Windows Server</span><span class="tag">Linux</span><span class="tag">Active Directory</span><span class="tag">Zabbix</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/13</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg" alt="">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt=""></div></div>
+        <h3>Web Server Stack</h3>
+        <p>Full stack with Nginx as a reverse proxy, Apache on the backend, SSL/TLS certificates and performance tuning for production.</p>
+        <div class="tags"><span class="tag">Nginx</span><span class="tag">Apache</span><span class="tag">SSL/TLS</span><span class="tag">Linux</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-top"><span class="card-idx">/14</span><div class="logos">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt="">
+          <img src="https://cdn.simpleicons.org/mqtt/EDEDEF" alt=""></div></div>
+        <h3>IoT Network</h3>
+        <p>IoT network over MQTT with Arduino sensors and a real-time monitoring dashboard for the embedded devices.</p>
+        <div class="tags"><span class="tag">Arduino</span><span class="tag">MQTT</span><span class="tag">IoT</span><span class="tag">Dashboard</span></div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="sec" id="contato">
+    <div class="sec-head reveal">
+      <span class="sec-num">06</span><h2 class="sec-title">Contact</h2>
+      <span class="sec-note">networking · infra · development</span>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <p class="ct-h">Let's<br>build<br><u>something.</u></p>
+        <p class="ct-p">Open to internship opportunities, collaborations and knowledge sharing in networking, infrastructure, security and software development.</p>
+        <div class="links">
+          <a class="link" href="https://github.com/MathZiraA" target="_blank" rel="noopener">
+            <span><small>Code</small><b>github.com/MathZiraA</b></span><i>→</i></a>
+          <a class="link" href="https://www.linkedin.com/in/matheusziravello" target="_blank" rel="noopener">
+            <span><small>Professional network</small><b>LinkedIn · Matheus Ziravello</b></span><i>→</i></a>
+          <a class="link" href="https://www.florgestr.com" target="_blank" rel="noopener">
+            <span><small>Product</small><b>FlowGest · CRM</b></span><i>→</i></a>
+          <a class="link" href="https://mathziraa.github.io" target="_blank" rel="noopener">
+            <span><small>Portfolio</small><b>mathziraa.github.io</b></span><i>→</i></a>
+        </div>
+      </div>
+
+      <form class="reveal" id="form" action="https://formspree.io/f/xzdynkpy" method="POST" novalidate>
+        <div class="fg" id="fg-nome">
+          <label for="nome">Name</label>
+          <input type="text" id="nome" name="nome" placeholder="What should I call you">
+          <span class="err">Please enter your name.</span>
+        </div>
+        <div class="fg" id="fg-email">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@email.com">
+          <span class="err">Please enter a valid email.</span>
+        </div>
+        <div class="fg" id="fg-msg">
+          <label for="mensagem">Message</label>
+          <textarea id="mensagem" name="mensagem" placeholder="What would you like to talk about?"></textarea>
+          <span class="err">Please write your message.</span>
+        </div>
+        <button type="submit">Send message →</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 <b>Matheus Maciel Ziravello</b></span>
+    <span>Compre &amp; Alugue Agora · FlowGest · SENAI · FIAP</span>
+  </footer>
+</main>
+
+<script>
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const prog = document.getElementById('prog'), nav = document.getElementById('nav');
+addEventListener('scroll', () => {
+  const h = document.documentElement.scrollHeight - innerHeight;
+  prog.style.width = (scrollY / h * 100) + '%';
+  nav.classList.toggle('stuck', scrollY > 40);
+}, {passive:true});
+
+const spot = document.getElementById('spot');
+if (!reduce) addEventListener('pointermove', e => {
+  spot.style.setProperty('--mx', e.clientX + 'px');
+  spot.style.setProperty('--my', e.clientY + 'px');
+}, {passive:true});
+
+document.querySelectorAll('.card, .cert-c').forEach(c => {
+  c.addEventListener('pointermove', e => {
+    const r = c.getBoundingClientRect();
+    c.style.setProperty('--cx', (e.clientX - r.left) + 'px');
+    c.style.setProperty('--cy', (e.clientY - r.top) + 'px');
+  });
+});
+
+const io = new IntersectionObserver(es => {
+  es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:.1, rootMargin:'0px 0px -50px'});
+document.querySelectorAll('.reveal').forEach((el,i) => {
+  el.style.transitionDelay = (i % 3 * 70) + 'ms';
+  io.observe(el);
+});
+
+const navA = [...document.querySelectorAll('.nav-links a')];
+const sio = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (!e.isIntersecting) return;
+    navA.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id));
+  });
+}, {rootMargin:'-45% 0px -50% 0px'});
+document.querySelectorAll('section[id]').forEach(s => sio.observe(s));
+
+const cio = new IntersectionObserver(es => {
+  es.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, target = +el.dataset.count;
+    let n = 0;
+    const step = () => { n++; el.textContent = n; if (n < target) setTimeout(step, 120); };
+    step();
+    cio.unobserve(el);
+  });
+}, {threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
+
+const certs = [
+  ['CCNA','Introduction to Networks'],
+  ['CCNA','Switching, Routing and Wireless Essentials'],
+  ['CCNA','Enterprise Networking, Security and Automation'],
+  ['Google Cloud','Cloud Cybersecurity'],
+  ['AWS Academy','Cloud Foundations'],
+  ['Oracle','Cloud Infrastructure'],
+  ['Fortinet','Certified Associate in Cybersecurity'],
+  ['Fortinet','Certified Fundamentals in Cybersecurity'],
+  ['SENAI','Windows Server Administration']
+];
+const row = certs.map(([k,v]) => '<div class="mq"><s>&#9670;</s>' + k + ' <span style="color:var(--txt-mute)">/</span> ' + v + '</div>').join('');
+document.getElementById('track').innerHTML = row + row;
+
+const roles = ['IT Intern @ Compre & Alugue Agora','Creator of FlowGest · Full Stack','Network infrastructure','Security & firewalls','Multi-cloud: AWS · Azure · GCP','Software Engineering @ FIAP · 2027'];
+const roleEl = document.getElementById('role');
+if (reduce) { roleEl.innerHTML = '<b>' + roles[0] + '</b>'; }
+else {
+  let ri = 0, rc = 0, del = false;
+  (function typeRole(){
+    const s = roles[ri];
+    roleEl.innerHTML = '<b>' + s.slice(0, rc) + '</b>';
+    if (!del) { rc++; if (rc > s.length) { del = true; return setTimeout(typeRole, 1900); } }
+    else { rc--; if (rc === 0) { del = false; ri = (ri + 1) % roles.length; } }
+    setTimeout(typeRole, del ? 26 : 60);
+  })();
+}
+
+const lines = [
+  ['tp','$ '],['tk','whoami\n'],
+  ['tv','matheus maciel ziravello\n\n'],
+  ['tp','$ '],['tk','traceroute profile\n'],
+  ['tv',' 1  senai-sao-caetano   2 ms   networking + systems\n'],
+  ['tv',' 2  cisco-ccna          3 ms   itn · srwe · ensa\n'],
+  ['tv',' 3  aws-academy         4 ms   cloud foundations\n'],
+  ['tv',' 4  google-cloud        4 ms   cybersecurity\n'],
+  ['tv',' 5  fortinet            5 ms   fca · fcf\n'],
+  ['tv',' 6  tips-tecnologia     3 ms   it internship\n'],
+  ['tv',' 7  flowgest            2 ms   saas in production\n'],
+  ['tv',' 8  compre-alugue       1 ms   '],['tp','destination reached\n\n'],
+  ['tp','$ '],['tk','systemctl status profile\n'],
+  ['tv','● profile.service — '],['tp','active (running)\n'],
+  ['tv','   next: fiap · software engineering 2027\n'],
+  ['tp','$ ']
+];
+const term = document.getElementById('term');
+if (reduce) {
+  term.innerHTML = '<p>' + lines.map(l => '<span class="' + l[0] + '">' + l[1] + '</span>').join('') + '</p>';
+} else {
+  const p = document.createElement('p'); term.appendChild(p);
+  const cur = document.createElement('span'); cur.className = 'cursor';
+  let li = 0, ci = 0, span = null;
+  (function type(){
+    if (li >= lines.length) { p.appendChild(cur); return; }
+    const cls = lines[li][0], txt = lines[li][1];
+    if (ci === 0) { span = document.createElement('span'); span.className = cls; p.appendChild(span); }
+    span.textContent += txt[ci++];
+    if (ci >= txt.length) { li++; ci = 0; }
+    setTimeout(type, txt[ci-1] === '\n' ? 150 : 12);
+  })();
+}
+
+const form = document.getElementById('form');
+[['nome','fg-nome'],['email','fg-email'],['mensagem','fg-msg']].forEach(f => {
+  document.getElementById(f[0]).addEventListener('input', () => document.getElementById(f[1]).classList.remove('bad'));
+});
+form.addEventListener('submit', e => {
+  let ok = true;
+  const nome = document.getElementById('nome').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const msg = document.getElementById('mensagem').value.trim();
+  if (!nome) { document.getElementById('fg-nome').classList.add('bad'); ok = false; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('fg-email').classList.add('bad'); ok = false; }
+  if (!msg) { document.getElementById('fg-msg').classList.add('bad'); ok = false; }
+  if (!ok) e.preventDefault();
+});
+</script>
+</body>
+</html>
