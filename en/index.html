@@ -346,7 +346,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
         </div>
       </div>
       <div class="stats reveal">
-        <div class="stat"><b data-count="10">0</b><em>Certifications</em></div>
+        <div class="stat"><b data-count="13">0</b><em>Certifications</em></div>
         <div class="stat"><b data-count="4">0</b><em>Clouds · AWS Azure GCP OCI</em></div>
         <div class="stat"><b data-count="15">0</b><em>Projects</em></div>
         <div class="stat"><b data-count="2">0</b><em>IT internships</em></div>
@@ -457,6 +457,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt=""><b>React</b></div>
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt=""><b>PostgreSQL</b></div>
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt=""><b>Docker</b></div>
+        <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg" alt=""><b>Kubernetes</b></div>
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt=""><b>Git</b></div>
         <div class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg" alt=""><b>Arduino</b></div>
         <div class="chip"><img src="https://cdn.simpleicons.org/espressif/E7352C" alt=""><b>ESP32</b></div>
@@ -468,9 +469,36 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
   <section class="sec" id="certificacoes">
     <div class="sec-head reveal">
       <span class="sec-num">04</span><h2 class="sec-title">Certifications</h2>
-      <span class="sec-note">10 verifiable credentials</span>
+      <span class="sec-note">13 verifiable credentials</span>
     </div>
     <div class="certs reveal">
+
+      <div class="cert-c">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg" alt="Kubernetes">
+        <div class="cert-b">
+          <div class="cert-issuer">Alura · Kubernetes</div>
+          <h4>Kubernetes with microservices: deploying and managing an application</h4>
+          <a href="https://cursos.alura.com.br/certificate/10e1e630-6e26-425f-95d5-8056e88593e8" target="_blank" rel="noopener">View credential →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg" alt="Kubernetes">
+        <div class="cert-b">
+          <div class="cert-issuer">Alura · Kubernetes</div>
+          <h4>Kubernetes: Deployments, Volumes and Scalability</h4>
+          <a href="https://cursos.alura.com.br/certificate/0b8337f1-dcdd-451d-a632-be59aa2a2d05" target="_blank" rel="noopener">View credential →</a>
+        </div>
+      </div>
+
+      <div class="cert-c">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-original.svg" alt="Kubernetes">
+        <div class="cert-b">
+          <div class="cert-issuer">Alura · Kubernetes</div>
+          <h4>Kubernetes: Pods, Services and ConfigMaps</h4>
+          <a href="https://cursos.alura.com.br/certificate/497bed1d-f989-428b-be0b-0d40950c770f" target="_blank" rel="noopener">View credential →</a>
+        </div>
+      </div>
 
       <div class="cert-c">
         <img src="https://images.credly.com/size/680x680/images/70d71df5-f3dc-4380-9b9d-f22513a70417/CCNAITN__1_.png" alt="Badge CCNA ITN">
@@ -831,6 +859,9 @@ const cio = new IntersectionObserver(es => {
 document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
 
 const certs = [
+  ['Alura','Kubernetes: Pods, Services and ConfigMaps'],
+  ['Alura','Kubernetes: Deployments, Volumes and Scalability'],
+  ['Alura','Kubernetes with microservices'],
   ['CCNA','Introduction to Networks'],
   ['CCNA','Switching, Routing and Wireless Essentials'],
   ['CCNA','Enterprise Networking, Security and Automation'],
